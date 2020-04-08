@@ -18,7 +18,6 @@ import java.util.List;
 public class MemberService {
 
     private final MemberRepository memberRepository;
-    private final FoodRepository foodRepository;
     @Transactional
     //FIND , SAVE
     public Member SingUp(Member member) {

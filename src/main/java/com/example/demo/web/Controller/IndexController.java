@@ -43,7 +43,7 @@ public class IndexController {
             model.addAttribute("userName", user.getName());
         }
 
-        return "index"; //index.mustache로 자동 변환되어 반환한다.
+        return "MainContent"; //index.mustache로 자동 변환되어 반환한다.
     }
 
     /**
@@ -51,7 +51,7 @@ public class IndexController {
      */
     @GetMapping("/chickin")
     public String postsCheckin(Model model){
-//        model.addAttribute("Store", storeRepository.findAll_chicken());
+        model.addAttribute("Store", storeRepository.findAll_chicken());
         return "chickin";
     }
 
@@ -60,7 +60,7 @@ public class IndexController {
      */
     @GetMapping("/zokbal")
     public String postsPig(Model model){
-//        model.addAttribute("Store", storeRepository.findAll_zokbal());
+        model.addAttribute("Store", storeRepository.findAll_zokbal());
         return "zokbal";
     }
 
@@ -70,7 +70,7 @@ public class IndexController {
     @GetMapping("/pizza")
     public String postsPizza(Model model){
 
-//        model.addAttribute("Store", storeRepository.findAll_pizza());
+        model.addAttribute("Store", storeRepository.findAll_pizza());
         return "pizza";
     }
 
@@ -80,7 +80,7 @@ public class IndexController {
     @GetMapping("/korea")
     public String postsKorea(Model model){
 
-//        model.addAttribute("Store", storeRepository.findAll_korea());
+        model.addAttribute("Store", storeRepository.findAll_korea());
         return "korea";
     }
 

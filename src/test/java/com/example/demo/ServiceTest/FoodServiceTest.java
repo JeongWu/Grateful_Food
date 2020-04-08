@@ -23,6 +23,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@Rollback(false)
 public class FoodServiceTest {
 
     @Autowired

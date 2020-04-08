@@ -72,11 +72,6 @@ public class Store extends BaseTimeEntity {
 
 
 
-    @ManyToOne(fetch = FetchType.LAZY) //member 과 order을 n:1로 매핑시킨다
-    @JoinColumn(name = "member_id") //외래키생성. many에서만 생성된다.
-    private Member member;
-
-
     @Builder //사용자에게 입력받는 정보 + 사용자에게 해당정보를 보여준다.
     public Store(String name, String tel, String address, int s_coupon) {
         this.name = name;

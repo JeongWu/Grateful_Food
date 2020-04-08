@@ -37,10 +37,6 @@ public class Delivery extends BaseTimeEntity {
         this.order = order;
     }
 
-    public void DeliverySetOrder(Order order){
-        this.order = order;
-    }
-
     public void DeliverySetAddress_InOrder(String zipcode, String street){
         this.zipcode =zipcode;
         this.street = street;

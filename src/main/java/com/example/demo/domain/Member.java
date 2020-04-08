@@ -28,9 +28,9 @@ public class Member extends BaseTimeEntity {
         @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
         private List<Food> foods = new ArrayList<>();
 
-
-        @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
-        private List<Store> store = new ArrayList<>();
+//
+//        @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+//        private List<Store> store = new ArrayList<>();
 
         @Embedded
         private Address address;

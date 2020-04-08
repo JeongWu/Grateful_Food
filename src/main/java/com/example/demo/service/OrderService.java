@@ -56,8 +56,7 @@ public class OrderService {
         delivery.DeliverySetstatus_InOrder(orderSaveRequestDto.getStatus());
         delivery.DeliverySetcoupon_InOrder(orderSaveRequestDto.getCoupon());
 
-//        deliveryRepository.save(delivery);
-        order.applyDelivery(delivery); //oneToone mapping 과연?
+        order.applyDelivery(delivery);
 
         deliveryRepository.save(delivery);
         memberRepository.save(member);
@@ -66,16 +65,17 @@ public class OrderService {
     }
 
 
-    //order food 매핑
+    //orderfood매핑하기
     @Transactional
     public void saveOrderfood(Long id, Orderfood... orderfoodss){
         Order order = orderRepository.findOne(id);
         //  //음식 주문로직 -> 음식 , 가격 , 개수가 담겨 있음 -> 문제는 추후 계산 문제
-        Orderfood orderfood = Orderfood.createOrderfood(order.getMember().getFoods().get(1),order.getStockQuantity());
-
-        for(Orderfood orderfoods : orderfoodss){
-            order.addOrderFood(orderfoods);
-        }
+        // 하나밖에 못가져온다 값을...
+        Orderfood orderfood = Orderfood.createOrderfood(order.getMember().getFoods().get(0),order.getStockQuantity());
+        order.addOrderFood(orderfood); //매핑될까?
+//        for(Orderfood orderfoods : orderfoodss){
+//            order.addOrderFood(orderfoods);
+//        }
 
         orderfoodRepository.save(orderfood);
 
@@ -125,8 +125,6 @@ public class OrderService {
 //
 //    }
 
-//    @Transactional(readOnly =true)
-//    public List<OrderListResponseDto> b_findOrders(){return orderRepository.b_findAll().stream().map(OrderListResponseDto::new).collect(Collectors.toList()); }
-//}
+
 
 //cascade -> 정보 다날려~

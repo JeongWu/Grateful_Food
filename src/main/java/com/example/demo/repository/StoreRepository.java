@@ -52,26 +52,26 @@ public class StoreRepository {
     }
 
 
-//    public List<Store> findAll_chicken(){
-//        return em.createQuery("select s  from Store s where s.name = 'BBQ' Or s.name = 'KFC'", Store.class)
-//                .getResultList();
-//    }
-//
-//
-//    public List<Store> findAll_pizza(){
-//        return em.createQuery("select s from Store s where s.name ='DOMINO' Or s.name ='PIZZAHUT'", Store.class)
-//                .getResultList();
-//    }
-//
-//
-//    public List<Store> findAll_zokbal(){
-//        return em.createQuery("select s from Store s where s.name = 'Gazok' Or s.name = 'hyeonwuZok'", Store.class)
-//                .getResultList();
-//    }
-//
-//
-//    public List<Store> findAll_korea(){
-//        return em.createQuery("select s from Store s where s.name = 'KIMBABHEAVEN' Or s.name ='Kimbabhell'", Store.class)
-//                .getResultList();
-//    }
+    public List<Store> findAll_chicken(){
+        return em.createQuery("select s  from Store s where s.name = 'BBQ' Or s.name = 'KFC'", Store.class)
+                .getResultList();
+    }
+
+
+    public List<Store> findAll_pizza(){
+        return em.createQuery("select s from Store s where s.name ='DOMINO' Or s.name ='PIZZAHUT'", Store.class)
+                .getResultList();
+    }
+
+
+    public List<Store> findAll_zokbal(){
+        return em.createQuery("select s from Store s where s.name = 'Gazok' Or s.name = 'hyeonwuZok'", Store.class)
+                .getResultList();
+    }
+
+
+    public List<Store> findAll_korea(){
+        return em.createQuery("select s from Store s where s.name = 'KIMBABHEAVEN' Or s.name ='Kimbabhell'", Store.class)
+                .getResultList();
+    }
 }

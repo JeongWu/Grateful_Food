@@ -24,6 +24,7 @@ public class FoodService {
     private final FoodRepository foodRepository;
     private final MemberRepository memberRepository;
 
+    //푸드정보 보여준다
     @Transactional(readOnly = true)
     public List<FoodListResponseDto> findAllDesc(){
         return foodRepository.findAll().stream().map(FoodListResponseDto::new).collect(Collectors.toList());

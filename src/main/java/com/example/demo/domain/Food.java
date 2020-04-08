@@ -32,7 +32,7 @@ public class Food  { //builder로 값을 넘겨줘야함.
     private Order order;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id")
+    @JoinColumn(name = "orderfood_id")
     private Orderfood orderfood;
 
 

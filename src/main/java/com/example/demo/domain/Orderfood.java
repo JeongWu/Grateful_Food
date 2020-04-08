@@ -19,6 +19,7 @@ public class Orderfood extends BaseTimeEntity {
     @OneToMany(mappedBy = "orderfood")
     private List<Food> foods = new ArrayList<>();
 
+    //Owner
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
     private Order order;
@@ -28,6 +29,9 @@ public class Orderfood extends BaseTimeEntity {
     private int count;
 
     private  int discount; //어떻게 계산할것인가
+
+
+
 
     protected Orderfood() {
 
@@ -49,14 +53,11 @@ public class Orderfood extends BaseTimeEntity {
         food.Setfood_orderfood(this);
     }
 
+
+
     public void Total_price(int orderprice){
         this.orderprice = orderprice;
     }
-
-
-//    public void Recive_Order(Order order){
-//        this.order = order;
-//    }
 
     public void cancel() { //주문중 취소
         getOrder().cancel();

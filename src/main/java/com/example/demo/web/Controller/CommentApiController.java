@@ -4,7 +4,6 @@ import com.example.demo.domain.Comments;
 import com.example.demo.repository.CommentRepository;
 import com.example.demo.service.CommentService;
 import com.example.demo.web.Request.CommentSaveRequestDto;
-import com.example.demo.web.Response.CommentResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
