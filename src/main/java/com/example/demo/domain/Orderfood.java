@@ -42,6 +42,7 @@ public class Orderfood extends BaseTimeEntity {
     public static Orderfood createOrderfood(Food food, int count) {
         Orderfood orderfood = new Orderfood();
         orderfood.Orderfood_Food(food);
+        orderfood.count = count;
         orderfood.Total_price(food.getPrice()); //가격을 어떻게 설정할 것인가.
 
         return orderfood;

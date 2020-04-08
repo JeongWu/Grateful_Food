@@ -44,8 +44,8 @@ public class FoodServiceTest {
 
         Food food = new Food();
         foodRepository.save(food.builder()
-        .name("치킨")
-        .price(1000)
+        .name("족발")
+        .price(2000)
         .build());
 
 

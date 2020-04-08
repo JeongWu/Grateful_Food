@@ -22,13 +22,13 @@ import javax.persistence.*;
  * 한식 : 김밥천국, 김밥지옥
  * 족발 : 가장맛있는족발, 현우네족발
  */
-public class Store extends BaseTimeEntity {
+public class Store  {
 
 
     //디비에저장
     @Id
-    @GeneratedValue
-    @Column(name = "storse_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "store_id")
     private Long id;
 
     @Column(name = "store_name")
@@ -40,11 +40,6 @@ public class Store extends BaseTimeEntity {
 
     @Column(name = "store_address")
     private String address; //가게주소 입력 변경사항 -> address클래스에서 직접 입력하는 변수명으로 바꿈
-
-
-    @Column(name = "store_coupon")
-    private int s_coupon;
-
 
     @ManyToOne
     @JoinColumn(name="domino_id")
@@ -73,11 +68,9 @@ public class Store extends BaseTimeEntity {
 
 
     @Builder //사용자에게 입력받는 정보 + 사용자에게 해당정보를 보여준다.
-    public Store(String name, String tel, String address, int s_coupon) {
+    public Store(String name, String tel, String address) {
         this.name = name;
         this.tel = tel;
         this.address = address;
-        this.s_coupon = s_coupon;
     }
-
 }
