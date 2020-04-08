@@ -89,3 +89,7 @@ a {
   width:100px;
   height:150px;
 }
+
+.cursor{
+  cursor : not-allowed! important;
+}

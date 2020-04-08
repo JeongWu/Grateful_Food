@@ -1,16 +1,18 @@
 import React, { Component } from "react";
-import { Nav, Form, Button, Container, Row, Col } from "react-bootstrap";
+import { Nav, Form, Button, Container, Row, Col,Table,Badge } from "react-bootstrap";
 import img from "../img/logo.png";
-
+import "../App.css";
 class Myinfo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      mode: 1
+      mode: 1,
+      key : "profile"
     };
   }
   render() {
-    const { mode } = this.state;
+    const { mode,key } = this.state;
+    const handleselect=eventKey=> this.setState({ key : eventKey });
     return (
       <>
         {mode === 1 ? (
@@ -47,14 +49,15 @@ class Myinfo extends Component {
               </div>
               <div className="tab2"></div>
             </Row>
-            <Nav variant="tabs" defaultActiveKey="/home">
+            <Nav variant="tabs" activeKey={key} onSelect={handleselect}>
               <Nav.Item>
-                <Nav.Link href="#">회원정보</Nav.Link>
+                <Nav.Link eventKey="profile">회원정보</Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link href="#">주문내역</Nav.Link>
+                <Nav.Link eventKey="order">주문내역</Nav.Link>
               </Nav.Item>
             </Nav>
+            {key==="profile" ? (
             <Form>
               <Form.Group as={Row} controlId="formPlaintextEmail">
                 <Col>
@@ -100,7 +103,43 @@ class Myinfo extends Component {
                 </Col>
               </Form.Group>
             </Form>
+            ) : (
+              <Table striped bordered hover size="sm">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>음식점</th>
+      <th>메뉴</th>
+      <th>시간</th>
+      <th>상태</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>2020.02.12</td>
+      <td><Badge pill variant="danger">준비중</Badge></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>2020.02.12</td>
+      <td><Badge pill variant="success">배달완료</Badge></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td colSpan="2">Larry the Bird</td>
+      <td>2020.02.12</td>
+      <td><Badge pill variant="primary">배달중</Badge></td>
+    </tr>
+  </tbody>
+</Table>
+            )}
           </Container>
+          
         )}
       </>
     );
