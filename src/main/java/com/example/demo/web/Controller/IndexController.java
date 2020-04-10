@@ -4,9 +4,10 @@ import com.example.demo.config.auth.dto.SessionUser;
 import com.example.demo.repository.CommentRepository;
 import com.example.demo.repository.OrderRepository;
 import com.example.demo.repository.StoreRepository;
-import com.example.demo.service.FoodService;
+import com.example.demo.service.CategoryService;
 
 import com.example.demo.service.OrderService;
+import com.example.demo.service.StoreService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,19 +19,18 @@ import javax.servlet.http.HttpSession;
 @RequiredArgsConstructor
 @Controller
 public class IndexController {
-
-    private final FoodService foodService;
+    private final CategoryService categoryService;
 
     private final HttpSession httpSession;
-
     private final CommentRepository commentRepository;
     private final OrderRepository orderRepository;
     private final StoreRepository storeRepository;
+    private final StoreService storeService;
 
 
     @GetMapping("/")
     public String index(Model model) {
-        model.addAttribute("food", foodService.findAllDesc());
+        model.addAttribute("category", categoryService.findAllDesc());
 
 
         //CustomOAuth2UserService에서 로그인 성공시 세션에 SessionUser를 저장하도록 구성함.
@@ -51,7 +51,7 @@ public class IndexController {
      */
     @GetMapping("/chickin")
     public String postsCheckin(Model model){
-        model.addAttribute("Store", storeRepository.findAll_chicken());
+        model.addAttribute("Store", storeService.findAllCheckin());
         return "chickin";
     }
 
@@ -60,7 +60,7 @@ public class IndexController {
      */
     @GetMapping("/zokbal")
     public String postsPig(Model model){
-        model.addAttribute("Store", storeRepository.findAll_zokbal());
+        model.addAttribute("Store", storeService.findAllZokbal());
         return "zokbal";
     }
 
@@ -70,7 +70,7 @@ public class IndexController {
     @GetMapping("/pizza")
     public String postsPizza(Model model){
 
-        model.addAttribute("Store", storeRepository.findAll_pizza());
+        model.addAttribute("Store", storeService.findAllPizza());
         return "pizza";
     }
 
@@ -80,10 +80,58 @@ public class IndexController {
     @GetMapping("/korea")
     public String postsKorea(Model model){
 
-        model.addAttribute("Store", storeRepository.findAll_korea());
+        model.addAttribute("Store", storeService.findAllKorea());
         return "korea";
     }
 
+
+    @GetMapping("/chickin/kfc")
+    public String foodKkc(Model model){
+        model.addAttribute("Store", storeService.findAllCheckin());
+        return "chickin";
+    }
+
+    @GetMapping("/chickin/bbq")
+    public String foodBbq(Model model){
+        model.addAttribute("Store", storeService.findAllCheckin());
+        return "chickin";
+    }
+
+    @GetMapping("/pizza/domino")
+    public String foodDomino(Model model){
+        model.addAttribute("Store", storeService.findAllCheckin());
+        return "chickin";
+    }
+
+    @GetMapping("/pizza/pizzahut")
+    public String foodPizzahut(Model model){
+        model.addAttribute("Store", storeService.findAllCheckin());
+        return "chickin";
+    }
+
+    @GetMapping("/korea/heaven")
+    public String foodHeaven(Model model){
+        model.addAttribute("Store", storeService.findAllCheckin());
+        return "chickin";
+    }
+
+    @GetMapping("/korea/hell")
+    public String foodHell(Model model){
+        model.addAttribute("Store", storeService.findAllCheckin());
+        return "chickin";
+    }
+
+    @GetMapping("/zokbal/hyeonwoo")
+    public String foodHyeonwoo(Model model){
+        model.addAttribute("Store", storeService.findAllCheckin());
+        return "chickin";
+    }
+
+    @GetMapping("/zookbal/gazok")
+    public String foodGazok(Model model){
+        model.addAttribute("Store", storeService.findAllCheckin());
+        return "chickin";
+    }
 
     @GetMapping("posts/mydata") //내 정보 + 주문목록
     public String postsMyData(Model model) {
@@ -99,6 +147,7 @@ public class IndexController {
 
         return "mydata-page";
     }
+
 
 
 
