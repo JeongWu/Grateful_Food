@@ -13,10 +13,7 @@ import javax.persistence.*;
 
 @DiscriminatorValue("C")
 public class KFC extends Food {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "kfc_id")
-    private Long id;
+
     private String kfc_value;
     private String kfc_taste;
 

@@ -13,11 +13,6 @@ import javax.persistence.*;
 @DiscriminatorValue("P")
 public class Domino extends Food {
 
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "domino_id")
-    private Long id;
     private String domino_value;
     private String domino_taste;
 

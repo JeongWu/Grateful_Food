@@ -12,12 +12,8 @@ import javax.persistence.*;
 @Getter
 @Setter
 @DiscriminatorValue("P")
-public class PizzaHut extends Food {
+public class PizzaHut extends Food{
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "hut_id")
-    private Long id;
     private String hut_value;
     private String hut_taste;
 }
