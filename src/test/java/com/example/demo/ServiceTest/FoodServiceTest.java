@@ -6,7 +6,6 @@ import com.example.demo.domain.Food;
 import com.example.demo.domain.Member;
 import com.example.demo.repository.FoodRepository;
 import com.example.demo.repository.MemberRepository;
-import com.example.demo.service.FoodService;
 import com.example.demo.service.MemberService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -28,9 +27,6 @@ public class FoodServiceTest {
 
     @Autowired
     FoodRepository foodRepository;
-
-    @Autowired
-    FoodService foodService;
     @Autowired
     MemberRepository memberRepository;
     @Autowired

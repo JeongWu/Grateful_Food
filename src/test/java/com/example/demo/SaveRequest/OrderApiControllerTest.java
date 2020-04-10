@@ -44,8 +44,6 @@ public class OrderApiControllerTest {
     private MemberRepository memberRepository;
     @Autowired
     private FoodRepository foodRepository;
-    @Autowired
-    private DeliveryRepository deliveryRepository;
 
 
 //    @After

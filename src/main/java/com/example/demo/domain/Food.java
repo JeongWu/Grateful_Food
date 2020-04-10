@@ -22,10 +22,9 @@ public class Food  { //builder로 값을 넘겨줘야함.
     private String name;
     private int price;
 
-    @ManyToMany(mappedBy = "foods")
-    private List<Category> categories = new ArrayList();
-
-
+    @ManyToOne
+    @JoinColumn(name = "store_id")
+    private Store store;
 
 //    @ManyToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "order_id")

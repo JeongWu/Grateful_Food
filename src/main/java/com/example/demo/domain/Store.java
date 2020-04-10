@@ -6,14 +6,18 @@ import com.example.demo.eating.korea.KimbabHeaven;
 import com.example.demo.eating.korea.Kimbabhell;
 import com.example.demo.eating.pizza.Domino;
 import com.example.demo.eating.pizza.PizzaHut;
+import com.example.demo.eating.zokbal.Gazok;
+import com.example.demo.eating.zokbal.HyeonwuZok;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 
 @Getter
+@Setter
 @NoArgsConstructor
 @Entity
 /**
@@ -30,47 +34,9 @@ public class Store  {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "store_id")
     private Long id;
-
-    @Column(name = "store_name")
     private String name;
-
-    @Column(name = "store_tel")
     private String tel;
-
-
-    @Column(name = "store_address")
     private String address; //가게주소 입력 변경사항 -> address클래스에서 직접 입력하는 변수명으로 바꿈
 
-    @ManyToOne
-    @JoinColumn(name="domino_id")
-    private Domino domino;
 
-    @ManyToOne
-    @JoinColumn(name = "hut_id")
-    private PizzaHut pizzaHut;
-
-    @ManyToOne
-    @JoinColumn(name="bbq_id")
-    private BBQ bbq;
-
-    @ManyToOne
-    @JoinColumn(name= "kfc_id")
-    private KFC kfc;
-
-    @ManyToOne
-    @JoinColumn(name = "heaven_id")
-    private KimbabHeaven kimbabHeaven;
-
-    @ManyToOne
-    @JoinColumn(name = "hell_id")
-    private Kimbabhell kimbabhell;
-
-
-
-    @Builder //사용자에게 입력받는 정보 + 사용자에게 해당정보를 보여준다.
-    public Store(String name, String tel, String address) {
-        this.name = name;
-        this.tel = tel;
-        this.address = address;
-    }
 }
