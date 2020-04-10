@@ -27,39 +27,33 @@ public class Food  { //builder로 값을 넘겨줘야함.
 
 
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_id")
-    private Order order;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "order_id")
+//    private Order order;
+//
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "orderfood_id")
+//    private Orderfood orderfood;
+//
+//
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "member_id")
+//    private Member member;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "orderfood_id")
-    private Orderfood orderfood;
-
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id")
-    private Member member;
-
-
-    /**
-     *
-     * @param orderfood / order / member
-     *     양방향 매핑
-     */
-    public void Setfood_orderfood(Orderfood orderfood){
-        this.orderfood = orderfood;
-    }
-
-
-
-    public void Setfood_order(Order order){
-        this.order = order;
-    }
-
-    public void Setfood_member(Member member){
-        this.member =member;
-    }
-
+//    public void Setfood_orderfood(Orderfood orderfood){
+//        this.orderfood = orderfood;
+//    }
+//
+//
+//
+//    public void Setfood_order(Order order){
+//        this.order = order;
+//    }
+//
+//    public void Setfood_member(Member member){
+//        this.member =member;
+//    }
+//
 
     @Builder // 값변경
     public Food(String name, int price) {

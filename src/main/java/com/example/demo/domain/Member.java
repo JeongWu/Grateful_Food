@@ -21,12 +21,12 @@ public class Member extends BaseTimeEntity {
         private String name;
 
 
-        @OneToMany(mappedBy = "member", fetch = FetchType.LAZY) //oneToMany ; mappedBy = owner, fetch = 지연로딩
-        private List<Order> orders = new ArrayList<>();  //member, order을 1:n으로 매핑시키고 order값을 가져온다.
+//        @OneToMany(mappedBy = "member", fetch = FetchType.LAZY) //oneToMany ; mappedBy = owner, fetch = 지연로딩
+//        private List<Order> orders = new ArrayList<>();
 
 
-        @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
-        private List<Food> foods = new ArrayList<>();
+//        @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+//        private List<Food> foods = new ArrayList<>();
 
 //
 //        @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
@@ -45,14 +45,14 @@ public class Member extends BaseTimeEntity {
                 this.coupon = coupon;
         }
 
-        public void Orderadd(Order order) {
-                order.setMember(this);
-                this.orders.add(order); //member값을 Oreder을 리스트에 더해준다.
-        }
-
-        public void Foodadd(Food food) {
-                food.Setfood_member(this);
-                this.foods.add(food); //member값을 Oreder을 리스트에 더해준다.
-        }
+//        public void Orderadd(Order order) {
+//                order.setMember(this);
+//                this.orders.add(order); //member값을 Oreder을 리스트에 더해준다.
+//        }
+//
+//        public void Foodadd(Food food) {
+//                food.Setfood_member(this);
+//                this.foods.add(food); //member값을 Oreder을 리스트에 더해준다.
+//        }
 
 }

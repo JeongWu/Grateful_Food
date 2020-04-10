@@ -69,6 +69,7 @@ public class OrderApiControllerTest {
         OrderSaveRequestDto requestDto = OrderSaveRequestDto.builder()
                 .coupon(member.getCoupon()) // 쿠폰사용유무
                 .stockQuantity(2000) //수량 2000개
+                .member(member)
                 .build();
 
         /**
@@ -76,18 +77,15 @@ public class OrderApiControllerTest {
          */
         Long orderid = orderService.order(requestDto);
 
-        // 저장한 데이터를 가지고와서
-        Order order = orderRepository.findOne(orderid);
-
-        //매핑 해주기
-        orderService.mappingOrder(requestDto, order, member, food);
+        //매핑 필요없다...
+//        orderService.mappingOrder(requestDto, order, member);
 
 
         /**
-         * orderfood 세팅 + order / orderfood 매핑
+         * orderfood 세팅을 어떻게 해줄까?
          */
         //****
-        orderService.saveOrderfood(orderid);
+        orderService.saveOrderfood(orderid, food);
 //
 //
 //        String url = "http://localhost:" + port + "/Guest/order";

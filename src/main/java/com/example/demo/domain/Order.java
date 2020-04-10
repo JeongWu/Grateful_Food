@@ -23,9 +23,9 @@ public class Order extends BaseTimeEntity {
     @JoinColumn(name = "member_id") //외래키생성. many에서만 생성된다.
     private Member member;
 
-
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    private List<Food> foods = new ArrayList<>();
+//
+//    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+//    private List<Food> foods = new ArrayList<>();
 
     @OneToMany(mappedBy = "order" , cascade = CascadeType.ALL )
     private List<Orderfood> orderfoods = new ArrayList<>();
@@ -38,10 +38,9 @@ public class Order extends BaseTimeEntity {
 출처: https://engkimbs.tistory.com/817 [새로비]
      */
 
-    //order가 연관관계주인이다.
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY) //
-    @JoinColumn(name = "delivery_id")
-    private Delivery delivery;
+//    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY) //
+//    @JoinColumn(name = "delivery_id")
+//    private Delivery delivery;
 
     private int stockQuantity;
 
@@ -53,10 +52,10 @@ public class Order extends BaseTimeEntity {
 
 
 
-    public void applyDelivery(Delivery delivery){
-        this.delivery = delivery;
-        delivery.applyOrder(this);
-    }
+//    public void applyDelivery(Delivery delivery){
+//        this.delivery = delivery;
+//        delivery.applyOrder(this);
+//    }
 
 
     public void setMember(Member member) {
@@ -73,10 +72,10 @@ public class Order extends BaseTimeEntity {
 
 
 
-    public void addFood(Food food) {
-        food.Setfood_order(this);
-        this.foods.add(food);
-    }
+//    public void addFood(Food food) {
+//        food.Setfood_order(this);
+//        this.foods.add(food);
+//    }
 
 
 
@@ -96,11 +95,11 @@ public class Order extends BaseTimeEntity {
 
 
     @Builder
-    public Order(int stockQuantity, Coupon coupon) {
+    public Order(int stockQuantity, Coupon coupon, Member member) {
         SetReady_DeliveryStatus(DeliveryStatus.READY); //디폴트값
         this.stockQuantity = stockQuantity;
         this.coupon = coupon;
-
+        this.member =member;
     }
 
 
@@ -115,7 +114,7 @@ public class Order extends BaseTimeEntity {
 
     //cancle하기위해서 필수이다.
     public  void cancel() {
-        if(delivery.getStatus() == DeliveryStatus.ARRIVE) {
+        if(this.getStatus() == DeliveryStatus.ARRIVE) {
             throw new IllegalStateException("출발은 상태에서는 취소 하실 수" +
                     "없습니다.");
         }

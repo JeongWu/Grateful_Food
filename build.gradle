@@ -77,13 +77,13 @@ dependencies {
 	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.5.0'
 	compile('org.springframework.boot:spring-boot-starter-oauth2-client')
 	compile("org.springframework.boot:spring-boot-starter-security")
-	compile('org.springframework.session:spring-session-jdbc')
+//	compile('org.springframework.session:spring-session-jdbc')
 
 	testCompile group: 'org.jacoco', name: 'org.jacoco.agent', version: '0.8.4'
 
 
 	compileOnly 'org.projectlombok:lombok'
-//	runtimeOnly 'com.h2database:h2'
+	runtimeOnly 'com.h2database:h2'
 //	compile 'mysql:mysql-connector-java'
 	runtime('mysql:mysql-connector-java')
 	annotationProcessor 'org.projectlombok:lombok'

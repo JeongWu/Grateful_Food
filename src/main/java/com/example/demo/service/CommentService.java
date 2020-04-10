@@ -36,11 +36,11 @@ public class CommentService {
     }
 
 //    //띄우기
-//    public CommentResponseDto findById(Long id){
-//        Comments entity = commentRepository.findById(id)
-//                .orElseThrow(()->new IllegalArgumentException("글이 없습니다. id="+ id));
-//
-//        return new CommentResponseDto(entity);
-//    }
+    public CommentResponseDto findById(Long id){
+        Comments entity = commentRepository.findById(id)
+                .orElseThrow(()->new IllegalArgumentException("글이 없습니다. id="+ id));
+
+        return new CommentResponseDto(entity);
+    }
 
 }

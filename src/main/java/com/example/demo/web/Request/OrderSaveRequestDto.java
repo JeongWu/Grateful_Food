@@ -15,14 +15,17 @@ public class OrderSaveRequestDto {
     private int stockQuantity;
     private DeliveryStatus status;
     private  Coupon coupon;
+    private Member member;
 
     @Builder
     //값 등록이 필요없다.
-    public OrderSaveRequestDto(int stockQuantity, DeliveryStatus status, Coupon coupon){
+    public OrderSaveRequestDto(int stockQuantity, DeliveryStatus status, Coupon coupon, Member member){
 //        member.getOrder().add(Order.builder().build()); //해당값 어떻게처리할가에대한 고민...
         this.coupon = coupon;
         this.stockQuantity = stockQuantity;
         this.status = status;
+        this.member = member;
+
 //        this.foods.add(food);
 //        food.Food_Order(Order);
 
@@ -35,6 +38,7 @@ public class OrderSaveRequestDto {
         return Order.builder()
                 .coupon(coupon)
                 .stockQuantity(stockQuantity)
+                .member(member)
                 .build();
     }
 }
