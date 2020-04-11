@@ -16,7 +16,6 @@ public class StoreService {
 
     private final StoreRepository storeRepository;
 
-    //방법 2 전부뿌려준다
     @Transactional(readOnly = true)
     public List<StoreListResponseDto> findStore(Store store) {
         return storeRepository.findStore(store).stream()

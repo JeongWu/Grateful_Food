@@ -101,60 +101,62 @@ public class IndexController {
      * @return
      */
 
-    @GetMapping("/chickin/kfc")
-    public String foodKkc(Model model){
-
-        model.addAttribute("kfc-1", foodService.findOne("파닭치킨"));
-        model.addAttribute("kfc-2", foodService.findOne("초콜릿치킨"));
-
-
-        return "kfc";
-    }
-
     @GetMapping("/chickin/bbq")
     public String foodBbq(Model model){
-        model.addAttribute("bbq-1", foodService.findOne("후라이드"));
+        model.addAttribute("bbq", foodService.findOne(1));
         return "bbq";
     }
 
-    @GetMapping("/pizza/pizzahut")
-    public String foodDomino(Model model){
-        model.addAttribute("pizzahut-1", foodService.findOne("고구마피자"));
-        return "pizzahut";
-    }
+    @GetMapping("/chickin/kfc")
+    public String foodKfc(Model model){
 
-    @GetMapping("/pizza/domino")
-    public String foodPizzahut(Model model){
-        model.addAttribute("domino-1", foodService.findOne("도미노특제소스피자"));
-        return "Domino";
-    }
-
-    @GetMapping("/korea/heaven")
-    public String foodHeaven(Model model){
-        model.addAttribute("heaven-1", foodService.findOne("메로나김밥"));
-        return "heavn";
-    }
-
-    @GetMapping("/korea/hell")
-    public String foodHell(Model model){
-        model.addAttribute("hell-1", foodService.findOne("랍스타김밥"));
-        return "hell";
+        model.addAttribute("kfc", foodService.findOne(2));
+        return "kfc";
     }
 
     @GetMapping("/zokbal/hyeonwoo")
     public String foodHyeonwoo(Model model){
-        model.addAttribute("hyeonwoo-1", foodService.findOne("매운족발"));
-        model.addAttribute("hyeonwoo-2", foodService.findOne("덜매운족발"));
+        model.addAttribute("hyeonwoo", foodService.findOne(3));
 
         return "hyeonwoo";
     }
 
     @GetMapping("/zookbal/gazok")
     public String foodGazok(Model model){
-        model.addAttribute("gazok-1", foodService.findOne("마늘족발"));
+        model.addAttribute("gazok", foodService.findOne(4));
 
         return "gazok";
     }
+
+    @GetMapping("/korea/heaven")
+    public String foodHeaven(Model model){
+        model.addAttribute("heaven", foodService.findOne(5));
+        return "heavn";
+    }
+
+    @GetMapping("/korea/hell")
+    public String foodHell(Model model){
+        model.addAttribute("hell", foodService.findOne(6));
+        return "hell";
+    }
+
+
+
+
+    @GetMapping("/pizza/domino")
+    public String foodPizzahut(Model model){
+        model.addAttribute("domino", foodService.findOne(7));
+        return "Domino";
+    }
+
+    @GetMapping("/pizza/pizzahut")
+    public String foodDomino(Model model){
+        model.addAttribute("pizzahut", foodService.findOne(8));
+        return "pizzahut";
+    }
+
+
+
 
     @GetMapping("posts/mydata") //내 정보 + 주문목록
     public String postsMyData(Model model) {
@@ -165,8 +167,9 @@ public class IndexController {
             model.addAttribute("userName", user.getName());
             model.addAttribute("userEmail", user.getEmail());
             model.addAttribute("userPicture", user.getPicture());
+
         }
-        model.addAttribute("Order", orderRepository.findAll()); //food정보를 보여줌
+        model.addAttribute("Order", orderRepository.findAll());
 
         return "mydata-page";
     }

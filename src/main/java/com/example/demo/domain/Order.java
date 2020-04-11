@@ -30,7 +30,6 @@ public class Order extends BaseTimeEntity {
     @OneToMany(mappedBy = "order" , cascade = CascadeType.ALL )
     private List<Orderfood> orderfoods = new ArrayList<>();
 
-
     /*
       엔티티 Cascade는 엔티티의 상태 변화를 전파시키는 옵션
      단방향 혹은 양방향으로 매핑되어 있는 엔티티에 대해 어느 한쪽 엔티티의 상태(생성 혹은 삭제)가 변경되었을 시

@@ -6,11 +6,12 @@ package com.example.demo.service;
 import com.example.demo.domain.Food;
 import com.example.demo.repository.FoodRepository;
 
-import com.example.demo.web.Response.FoodResponseDto;
+import com.example.demo.web.Response.FoodListResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,12 +23,23 @@ public class FoodService {
 
     //푸드정보 보여준다 음식별로...
     @Transactional(readOnly = true)
-    public FoodResponseDto findOne(String name) {
-        Food entity = foodRepository.findAllDesc(name);
-
-        return new FoodResponseDto(entity);
+    public List<FoodListResponseDto> findOne(int id) {
+        List<Food> entity = foodRepository.findAll();
+        List<Food> result_entity = new ArrayList<>();
+        for(Food s : entity){
+            if(s.getStore().getId() ==id){
+                result_entity.add(s);
+            }
+        }
+        return result_entity.stream().map(FoodListResponseDto::new).collect(Collectors.toList());
     }
 
+//    @Transactional(readOnly = true)
+//    public List<Food> findtest(Long id){
+//
+//        List<Food> foods = foodRepository.findAll();
+//
+//    }
 }
 //
 //
