@@ -104,8 +104,8 @@ public class IndexController {
     @GetMapping("/chickin/kfc")
     public String foodKkc(Model model){
 
-        model.addAttribute("kfc-1", foodService.findAllDesc("파닭치킨"));
-        model.addAttribute("kfc-2", foodService.findAllDesc("초콜릿치킨"));
+        model.addAttribute("kfc-1", foodService.findOne("파닭치킨"));
+        model.addAttribute("kfc-2", foodService.findOne("초콜릿치킨"));
 
 
         return "kfc";
@@ -113,45 +113,45 @@ public class IndexController {
 
     @GetMapping("/chickin/bbq")
     public String foodBbq(Model model){
-        model.addAttribute("bbq-1", foodService.findAllDesc("후라이드"));
+        model.addAttribute("bbq-1", foodService.findOne("후라이드"));
         return "bbq";
     }
 
     @GetMapping("/pizza/pizzahut")
     public String foodDomino(Model model){
-        model.addAttribute("pizzahut-1", foodService.findAllDesc("고구마피자"));
+        model.addAttribute("pizzahut-1", foodService.findOne("고구마피자"));
         return "pizzahut";
     }
 
     @GetMapping("/pizza/domino")
     public String foodPizzahut(Model model){
-        model.addAttribute("domino-1", foodService.findAllDesc("도미노특제소스피자"));
+        model.addAttribute("domino-1", foodService.findOne("도미노특제소스피자"));
         return "Domino";
     }
 
     @GetMapping("/korea/heaven")
     public String foodHeaven(Model model){
-        model.addAttribute("heaven-1", foodService.findAllDesc("메로나김밥"));
+        model.addAttribute("heaven-1", foodService.findOne("메로나김밥"));
         return "heavn";
     }
 
     @GetMapping("/korea/hell")
     public String foodHell(Model model){
-        model.addAttribute("hell-1", foodService.findAllDesc("랍스타김밥"));
+        model.addAttribute("hell-1", foodService.findOne("랍스타김밥"));
         return "hell";
     }
 
     @GetMapping("/zokbal/hyeonwoo")
     public String foodHyeonwoo(Model model){
-        model.addAttribute("hyeonwoo-1", foodService.findAllDesc("매운족발"));
-        model.addAttribute("hyeonwoo-2", foodService.findAllDesc("덜매운족발"));
+        model.addAttribute("hyeonwoo-1", foodService.findOne("매운족발"));
+        model.addAttribute("hyeonwoo-2", foodService.findOne("덜매운족발"));
 
         return "hyeonwoo";
     }
 
     @GetMapping("/zookbal/gazok")
     public String foodGazok(Model model){
-        model.addAttribute("gazok-1", foodService.findAllDesc("마늘족발"));
+        model.addAttribute("gazok-1", foodService.findOne("마늘족발"));
 
         return "gazok";
     }

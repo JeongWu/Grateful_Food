@@ -22,7 +22,7 @@ public class FoodService {
 
     //푸드정보 보여준다 음식별로...
     @Transactional(readOnly = true)
-    public FoodResponseDto findAllDesc(String name) {
+    public FoodResponseDto findOne(String name) {
         Food entity = foodRepository.findAllDesc(name);
 
         return new FoodResponseDto(entity);
