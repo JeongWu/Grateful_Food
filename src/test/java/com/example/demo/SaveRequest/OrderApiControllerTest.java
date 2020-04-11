@@ -62,11 +62,11 @@ public class OrderApiControllerTest {
          5. 수량(개개인 음식수량) 어떻게 처리할까
          */
         Member member = memberRepository.findOne(1L);
-        Food food = foodRepository.findOne(1L);
+        Food food = foodRepository.findOne(1L); //도미노의 고구마피자 주문
 
         OrderSaveRequestDto requestDto = OrderSaveRequestDto.builder()
                 .coupon(member.getCoupon()) // 쿠폰사용유무
-                .stockQuantity(2000) //수량 2000개
+                .stockQuantity(2) //수량 2000개
                 .member(member)
                 .build();
 

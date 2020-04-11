@@ -87,4 +87,9 @@ public class StoreRepository {
     }
 
 
+    public List<Store> findAll(){
+        return em.createQuery("select s from Store s", Store.class)
+                .getResultList();
+    }
+
 }

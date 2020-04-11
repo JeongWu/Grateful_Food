@@ -61,7 +61,9 @@ public class IndexController {
     public String postsCheckin(Model model){
         Store store = new Store();
 
-        model.addAttribute("Store", storeService.findAllCheckin());
+        model.addAttribute("Bbq", foodService.findStore(1));
+        model.addAttribute("Kfc", foodService.findStore(2));
+
         return "chickin";
     }
 
@@ -70,19 +72,16 @@ public class IndexController {
      */
     @GetMapping("/zokbal")
     public String postsPig(Model model){
-        model.addAttribute("Store", storeService.findAllZokbal());
+        model.addAttribute("HyeonWuZok", foodService.findStore(3));
+        model.addAttribute("Gazok", foodService.findStore(4));
+
         return "zokbal";
     }
 
     /**
      * 피자 카테고리
      */
-    @GetMapping("/pizza")
-    public String postsPizza(Model model){
 
-        model.addAttribute("Store", storeService.findAllPizza());
-        return "pizza";
-    }
 
     /**
      * 한식카테고리
@@ -90,8 +89,19 @@ public class IndexController {
     @GetMapping("/korea")
     public String postsKorea(Model model){
 
-        model.addAttribute("Store", storeService.findAllKorea());
+        model.addAttribute("Heaven", foodService.findStore(5));
+        model.addAttribute("Hell", foodService.findStore(6));
+
         return "korea";
+    }
+
+    @GetMapping("/pizza")
+    public String postsPizza(Model model){
+
+        model.addAttribute("Domino", foodService.findStore(7));
+        model.addAttribute("Pizzahut", foodService.findStore(8));
+
+        return "pizza";
     }
 
 
@@ -118,7 +128,7 @@ public class IndexController {
     public String foodHyeonwoo(Model model){
         model.addAttribute("hyeonwoo", foodService.findOne(3));
 
-        return "hyeonwoo";
+        return "hyeonwu";
     }
 
     @GetMapping("/zookbal/gazok")
@@ -146,7 +156,7 @@ public class IndexController {
     @GetMapping("/pizza/domino")
     public String foodPizzahut(Model model){
         model.addAttribute("domino", foodService.findOne(7));
-        return "Domino";
+        return "domino";
     }
 
     @GetMapping("/pizza/pizzahut")

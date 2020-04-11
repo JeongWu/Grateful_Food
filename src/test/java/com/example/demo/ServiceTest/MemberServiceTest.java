@@ -1,10 +1,7 @@
 package com.example.demo.ServiceTest;
 
 
-import com.example.demo.domain.Address;
-import com.example.demo.domain.Coupon;
-import com.example.demo.domain.Food;
-import com.example.demo.domain.Member;
+import com.example.demo.domain.*;
 import com.example.demo.repository.FoodRepository;
 import com.example.demo.repository.MemberRepository;
 
@@ -65,7 +62,8 @@ public class MemberServiceTest {
     @Test(expected = IllegalStateException.class)
     public void Test_overlap() throws Exception {
 
-        memberRepository.save(Member.builder()
+
+       memberRepository.save(Member.builder()
                 .name("abc")
                 .build());
         memberRepository.save(Member.builder()

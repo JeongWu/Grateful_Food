@@ -3,6 +3,7 @@ package com.example.demo.ServiceTest;
 
 import com.example.demo.domain.Store;
 import com.example.demo.repository.StoreRepository;
+import com.example.demo.service.FoodService;
 import com.example.demo.service.StoreService;
 import com.example.demo.web.Response.StoreListResponseDto;
 import org.junit.Test;
@@ -25,6 +26,9 @@ public class StoreServiceTest {
     @Autowired
     StoreService storeService;
 
+    @Autowired
+    FoodService foodService;
+
 
 
     @Test
@@ -34,25 +38,29 @@ public class StoreServiceTest {
         Store store = new Store();
         List<StoreListResponseDto> stores = storeService.findStore(store);
 
-        String name ="BBQ";
-        String name2 ="KFC";
+        StoreListResponseDto s = foodService.findStore(2);
+        System.out.println(s.getName());
 
-        System.out.println("---------------result--------------------");
-        for(StoreListResponseDto test : stores) {
-            System.out.println(test.getName());
-            if(test.getName() == "BBQ" || test.getName()== "KFC") {
-                System.out.println("kkkkkkkkkkkkk");
-            }
-        }
-
-            System.out.println("---------------result2--------------------");
-
-        for(int i =0; i<stores.size(); i++){
-            if(stores.get(i).getName() == "BBQ" || stores.get(i).getName()=="KFC"){
-                System.out.println(stores.get(i).getAddress());
-            }
-        }
-        }
+//        System.out.println("--------------------------");
+//        String name ="BBQ";
+//        String name2 ="KFC";
+//
+//        System.out.println("---------------result--------------------");
+//        for(StoreListResponseDto test : stores) {
+//            System.out.println(test.getName());
+//            if(test.getName() == "BBQ" || test.getName()== "KFC") {
+//                System.out.println("kkkkkkkkkkkkk");
+//            }
+//        }
+//
+//            System.out.println("---------------result2--------------------");
+//
+//        for(int i =0; i<stores.size(); i++){
+//            if(stores.get(i).getName() == "BBQ" || stores.get(i).getName()=="KFC"){
+//                System.out.println(stores.get(i).getAddress());
+//            }
+//        }
+    }
 
 
 

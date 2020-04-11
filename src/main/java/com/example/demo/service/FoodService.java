@@ -4,9 +4,12 @@ package com.example.demo.service;
 
 
 import com.example.demo.domain.Food;
+import com.example.demo.domain.Store;
 import com.example.demo.repository.FoodRepository;
 
+import com.example.demo.repository.StoreRepository;
 import com.example.demo.web.Response.FoodListResponseDto;
+import com.example.demo.web.Response.StoreListResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,8 +23,8 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class FoodService {
     private final FoodRepository foodRepository;
+    private final StoreRepository storeRepository;
 
-    //푸드정보 보여준다 음식별로...
     @Transactional(readOnly = true)
     public List<FoodListResponseDto> findOne(int id) {
         List<Food> entity = foodRepository.findAll();
@@ -34,13 +37,27 @@ public class FoodService {
         return result_entity.stream().map(FoodListResponseDto::new).collect(Collectors.toList());
     }
 
+    @Transactional(readOnly = true)
+    public StoreListResponseDto findStore(int id) {
+        List<Food> entity = foodRepository.findAll();
+        Store store = null;
+        for (Food s : entity) {
+            if (s.getStore().getId() == id) {
+                store = s.getStore();
+            }
+        }
+        return new StoreListResponseDto(store);
+    }
+
+}
+
 //    @Transactional(readOnly = true)
 //    public List<Food> findtest(Long id){
 //
 //        List<Food> foods = foodRepository.findAll();
 //
 //    }
-}
+
 //
 //
 //
