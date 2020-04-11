@@ -1,7 +1,6 @@
 package com.example.demo.ServiceTest;
 
 
-import com.example.demo.domain.Food;
 import com.example.demo.domain.Store;
 import com.example.demo.repository.StoreRepository;
 import com.example.demo.service.StoreService;
@@ -31,11 +30,29 @@ public class StoreServiceTest {
     @Test
     public void FindPizza_Test(){
 
-        List<Store> storess = storeService.findname("BBQ");
-//        List<StoreListResponseDto> stores= storeService.findAllPizza();
-        System.out.println("---------------result1--------------------");
-//        stores.get(0).getName();
-        System.out.println("---------------result2--------------------");
+
+        Store store = new Store();
+        List<StoreListResponseDto> stores = storeService.findStore(store);
+
+        String name ="BBQ";
+        String name2 ="KFC";
+
+        System.out.println("---------------result--------------------");
+        for(StoreListResponseDto test : stores) {
+            System.out.println(test.getName());
+            if(test.getName() == "BBQ" || test.getName()== "KFC") {
+                System.out.println("kkkkkkkkkkkkk");
+            }
+        }
+
+            System.out.println("---------------result2--------------------");
+
+        for(int i =0; i<stores.size(); i++){
+            if(stores.get(i).getName() == "BBQ" || stores.get(i).getName()=="KFC"){
+                System.out.println(stores.get(i).getAddress());
+            }
+        }
+        }
 
 
 
@@ -43,9 +60,6 @@ public class StoreServiceTest {
          *       store :  가게이름, 전화번호, food : 음식이름, 음식 가격, domino :맛, 종류 정보까지
          */
 
-//        store.get()
-
-    }
 
 
 }

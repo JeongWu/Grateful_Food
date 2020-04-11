@@ -1,13 +1,16 @@
 package com.example.demo.web.Controller;
 
 import com.example.demo.config.auth.dto.SessionUser;
+import com.example.demo.domain.Store;
 import com.example.demo.repository.CommentRepository;
 import com.example.demo.repository.OrderRepository;
 import com.example.demo.repository.StoreRepository;
 import com.example.demo.service.CategoryService;
 
+import com.example.demo.service.FoodService;
 import com.example.demo.service.OrderService;
 import com.example.demo.service.StoreService;
+import com.example.demo.web.Response.StoreListResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
@@ -24,12 +28,16 @@ public class IndexController {
     private final HttpSession httpSession;
     private final CommentRepository commentRepository;
     private final OrderRepository orderRepository;
-    private final StoreRepository storeRepository;
+    private final FoodService foodService;
     private final StoreService storeService;
 
 
     @GetMapping("/")
     public String index(Model model) {
+
+        /**
+         * List 형태반환
+         */
         model.addAttribute("category", categoryService.findAllDesc());
 
 
@@ -51,6 +59,8 @@ public class IndexController {
      */
     @GetMapping("/chickin")
     public String postsCheckin(Model model){
+        Store store = new Store();
+
         model.addAttribute("Store", storeService.findAllCheckin());
         return "chickin";
     }
@@ -85,52 +95,65 @@ public class IndexController {
     }
 
 
+    /**
+     *
+     * @param complete
+     * @return
+     */
+
     @GetMapping("/chickin/kfc")
     public String foodKkc(Model model){
-        model.addAttribute("Store", storeService.findAllCheckin());
-        return "chickin";
+
+        model.addAttribute("kfc-1", foodService.findAllDesc("파닭치킨"));
+        model.addAttribute("kfc-2", foodService.findAllDesc("초콜릿치킨"));
+
+
+        return "kfc";
     }
 
     @GetMapping("/chickin/bbq")
     public String foodBbq(Model model){
-        model.addAttribute("Store", storeService.findAllCheckin());
-        return "chickin";
-    }
-
-    @GetMapping("/pizza/domino")
-    public String foodDomino(Model model){
-        model.addAttribute("Store", storeService.findAllCheckin());
-        return "chickin";
+        model.addAttribute("bbq-1", foodService.findAllDesc("후라이드"));
+        return "bbq";
     }
 
     @GetMapping("/pizza/pizzahut")
+    public String foodDomino(Model model){
+        model.addAttribute("pizzahut-1", foodService.findAllDesc("고구마피자"));
+        return "pizzahut";
+    }
+
+    @GetMapping("/pizza/domino")
     public String foodPizzahut(Model model){
-        model.addAttribute("Store", storeService.findAllCheckin());
-        return "chickin";
+        model.addAttribute("domino-1", foodService.findAllDesc("도미노특제소스피자"));
+        return "Domino";
     }
 
     @GetMapping("/korea/heaven")
     public String foodHeaven(Model model){
-        model.addAttribute("Store", storeService.findAllCheckin());
-        return "chickin";
+        model.addAttribute("heaven-1", foodService.findAllDesc("메로나김밥"));
+        return "heavn";
     }
 
     @GetMapping("/korea/hell")
     public String foodHell(Model model){
-        model.addAttribute("Store", storeService.findAllCheckin());
-        return "chickin";
+        model.addAttribute("hell-1", foodService.findAllDesc("랍스타김밥"));
+        return "hell";
     }
 
     @GetMapping("/zokbal/hyeonwoo")
     public String foodHyeonwoo(Model model){
-        model.addAttribute("Store", storeService.findAllCheckin());
-        return "chickin";
+        model.addAttribute("hyeonwoo-1", foodService.findAllDesc("매운족발"));
+        model.addAttribute("hyeonwoo-2", foodService.findAllDesc("덜매운족발"));
+
+        return "hyeonwoo";
     }
 
     @GetMapping("/zookbal/gazok")
     public String foodGazok(Model model){
-        model.addAttribute("Store", storeService.findAllCheckin());
-        return "chickin";
+        model.addAttribute("gazok-1", foodService.findAllDesc("마늘족발"));
+
+        return "gazok";
     }
 
     @GetMapping("posts/mydata") //내 정보 + 주문목록
@@ -158,10 +181,11 @@ public class IndexController {
      * 사장 / 고객 모든댓글을보여준다.
      */
     @GetMapping("/posts/comment")
-    public String CommentSaveUser(Model model) {
+    public String CommentUser(Model model) {
 
         model.addAttribute("Comment", commentRepository.findAll());
         return "comment";
+
     }
 
 

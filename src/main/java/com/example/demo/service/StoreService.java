@@ -2,7 +2,6 @@ package com.example.demo.service;
 
 import com.example.demo.domain.Store;
 import com.example.demo.repository.StoreRepository;
-import com.example.demo.web.Response.CategoryListResponseDto;
 import com.example.demo.web.Response.StoreListResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,6 +15,14 @@ import java.util.stream.Collectors;
 public class StoreService {
 
     private final StoreRepository storeRepository;
+
+    //방법 2 전부뿌려준다
+    @Transactional(readOnly = true)
+    public List<StoreListResponseDto> findStore(Store store) {
+        return storeRepository.findStore(store).stream()
+                .map(StoreListResponseDto::new)
+                .collect(Collectors.toList());
+    }
 
     @Transactional(readOnly = true)
     public List<StoreListResponseDto> findAllCheckin(){

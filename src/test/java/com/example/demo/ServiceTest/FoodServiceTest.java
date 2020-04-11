@@ -10,42 +10,26 @@ import com.example.demo.service.MemberService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.AutoConfigureOrder;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.List;
-
-import static com.example.demo.domain.Coupon.천원;
 import static org.assertj.core.api.Assertions.assertThat;
+
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@Rollback(false)
 public class FoodServiceTest {
 
     @Autowired
     FoodRepository foodRepository;
-    @Autowired
-    MemberRepository memberRepository;
-    @Autowired
-    MemberService memberService;
-
-
-
     @Test
-    public void Insert_Test() throws Exception {
+    public void Find() {
 
+        Food food = foodRepository.findAllDesc("파닭치킨");
 
-        Food food = new Food();
-        foodRepository.save(food.builder()
-        .name("족발")
-        .price(2000)
-        .build());
-
+        System.out.println(food.getName());
+        assertThat(food.getName()).isEqualTo("파닭치킨");
 
     }
-//        치킨, 피자, 중식, 일식, 한식, 족발
-
 }

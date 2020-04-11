@@ -1,6 +1,7 @@
 package com.example.demo.repository;
 
 
+import com.example.demo.domain.Food;
 import com.example.demo.domain.Store;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -32,7 +33,7 @@ public class StoreRepository {
         return em.find(Store.class, id);
     }
 
-//    public Store findById(String name){
+//    public List<Store> findAllDesc(String name){
 //        return em.find(Store.class, name);
 //    }
 
@@ -54,6 +55,7 @@ public class StoreRepository {
                 em.createQuery(cq).setMaxResults(100);
         return query.getResultList();
     }
+
 
 
 

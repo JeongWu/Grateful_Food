@@ -3,15 +3,11 @@ package com.example.demo.service;
 import com.example.demo.domain.Comments;
 import com.example.demo.repository.CommentRepository;
 import com.example.demo.web.Request.CommentSaveRequestDto;
-import com.example.demo.web.Response.FoodListResponseDto;
 import com.example.demo.web.Update.CommentUpdateRequestDto;
 import com.example.demo.web.Response.CommentResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 
 @Service

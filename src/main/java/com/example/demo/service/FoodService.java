@@ -1,31 +1,34 @@
-//package com.example.demo.service;
-//
-//
-//
-//
-//import com.example.demo.repository.FoodRepository;
-//
-//import com.example.demo.repository.MemberRepository;
-//import com.example.demo.repository.OrderRepository;
-//import com.example.demo.web.Response.FoodListResponseDto;
-//import lombok.RequiredArgsConstructor;
-//import org.springframework.stereotype.Service;
-//import org.springframework.transaction.annotation.Transactional;
-//
-//import java.util.List;
-//import java.util.stream.Collectors;
-//
-//@Service
-//@Transactional(readOnly = true)
-//@RequiredArgsConstructor
-//public class FoodService {
-//    private final FoodRepository foodRepository;
-//
-//    //푸드정보 보여준다 음식별로...
-//    @Transactional(readOnly = true)
-//    public List<FoodListResponseDto> findAllDesc(){
-//        return foodRepository.findAllDesc().stream().map(FoodListResponseDto::new).collect(Collectors.toList());
-//    }
+package com.example.demo.service;
+
+
+
+
+import com.example.demo.domain.Food;
+import com.example.demo.repository.FoodRepository;
+
+import com.example.demo.web.Response.FoodResponseDto;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Service
+@Transactional(readOnly = true)
+@RequiredArgsConstructor
+public class FoodService {
+    private final FoodRepository foodRepository;
+
+    //푸드정보 보여준다 음식별로...
+    @Transactional(readOnly = true)
+    public FoodResponseDto findAllDesc(String name) {
+        Food entity = foodRepository.findAllDesc(name);
+
+        return new FoodResponseDto(entity);
+    }
+
+}
 //
 //
 //

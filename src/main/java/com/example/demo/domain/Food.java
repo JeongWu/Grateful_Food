@@ -10,9 +10,8 @@ import java.util.List;
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "Ftype")
 @Getter
-@NoArgsConstructor
 @Embeddable
-public class Food  { //builder로 값을 넘겨줘야함.
+public class Food { //builder로 값을 넘겨줘야함.
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 자동으로 인덱스 ++ 만드는것
@@ -20,13 +19,18 @@ public class Food  { //builder로 값을 넘겨줘야함.
     private Long id;
 
     private String name;
+
     private int price;
 
     @ManyToOne
     @JoinColumn(name = "store_id")
     private Store store;
 
-//    @ManyToOne(fetch = FetchType.LAZY)
+    public Food() {
+
+    }
+
+    //    @ManyToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "order_id")
 //    private Order order;
 //
@@ -53,14 +57,6 @@ public class Food  { //builder로 값을 넘겨줘야함.
 //        this.member =member;
 //    }
 //
-
-    @Builder // 값변경
-    public Food(String name, int price) {
-        this.name = name;
-        this.price = price;
-
-    }
-
 
 
 }

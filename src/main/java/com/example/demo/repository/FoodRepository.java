@@ -13,5 +13,10 @@ public interface FoodRepository extends JpaRepository<Food, Long> {
     @Query("SELECT f FROM Food f where f.id = :id")
     Food findOne(Long id);
 
+    @Query("SELECT f FROM Food f where f.name = :name ")
+    Food findAllDesc(String name);
+
+
+
 
 }
