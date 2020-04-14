@@ -26,7 +26,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Transactional
-@Rollback(false)
+//@Rollback(false)
 public class OrderApiControllerTest {
 
 
@@ -75,8 +75,6 @@ public class OrderApiControllerTest {
          */
         Long orderid = orderService.order(requestDto);
 
-        //매핑 필요없다...
-//        orderService.mappingOrder(requestDto, order, member);
 
 
         /**

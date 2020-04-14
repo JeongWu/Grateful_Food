@@ -34,7 +34,7 @@ public class FoodServiceTest {
     @Test
     public void Find() {
 
-//        Food food = foodRepository.findAllDesc("파닭치킨");
+
         List<Food> test = foodRepository.findAll();
         for(Food t : test) {
             if (t.getStore().getId() == 7) {

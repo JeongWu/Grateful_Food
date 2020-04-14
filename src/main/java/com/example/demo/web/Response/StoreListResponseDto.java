@@ -2,14 +2,7 @@ package com.example.demo.web.Response;
 
 
 import com.example.demo.domain.Store;
-import com.example.demo.eating.chicken.BBQ;
-import com.example.demo.eating.chicken.KFC;
-import com.example.demo.eating.korea.KimbabHeaven;
-import com.example.demo.eating.korea.Kimbabhell;
-import com.example.demo.eating.pizza.Domino;
-import com.example.demo.eating.pizza.PizzaHut;
-import com.example.demo.eating.zokbal.Gazok;
-import com.example.demo.eating.zokbal.HyeonwuZok;
+
 import lombok.Getter;
 
 @Getter

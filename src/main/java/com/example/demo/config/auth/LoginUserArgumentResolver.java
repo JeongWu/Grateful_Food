@@ -37,6 +37,6 @@ public class LoginUserArgumentResolver implements HandlerMethodArgumentResolver 
     //수행.
     //파라메터에 전달할 긱체 생성, 세션에서 객체를 가져온다 .
     public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer, NativeWebRequest webRequest, WebDataBinderFactory binderFactory) throws Exception {
-        return httpSession.getAttribute("user");
+        return httpSession.getAttribute("member");
     }
 }

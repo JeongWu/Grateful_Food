@@ -4,13 +4,10 @@ import com.example.demo.config.auth.dto.SessionUser;
 import com.example.demo.domain.Store;
 import com.example.demo.repository.CommentRepository;
 import com.example.demo.repository.OrderRepository;
-import com.example.demo.repository.StoreRepository;
 import com.example.demo.service.CategoryService;
 
 import com.example.demo.service.FoodService;
-import com.example.demo.service.OrderService;
-import com.example.demo.service.StoreService;
-import com.example.demo.web.Response.StoreListResponseDto;
+import com.example.demo.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +15,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
@@ -29,7 +25,13 @@ public class IndexController {
     private final CommentRepository commentRepository;
     private final OrderRepository orderRepository;
     private final FoodService foodService;
-    private final StoreService storeService;
+
+
+    /**
+     * 모든 카테고리 뿌려준다
+     */
+
+
 
 
     @GetMapping("/")
@@ -55,11 +57,10 @@ public class IndexController {
     }
 
     /**
-     * 치킨 카테고리
+     * 치킨 가게
      */
     @GetMapping("/chickin")
     public String postsCheckin(Model model){
-        Store store = new Store();
 
         model.addAttribute("Bbq", foodService.findStore(1));
         model.addAttribute("Kfc", foodService.findStore(2));
@@ -68,7 +69,7 @@ public class IndexController {
     }
 
     /**
-     * 족발 카테고리
+     * 족발 가게
      */
     @GetMapping("/zokbal")
     public String postsPig(Model model){
@@ -78,13 +79,11 @@ public class IndexController {
         return "zokbal";
     }
 
-    /**
-     * 피자 카테고리
-     */
+
 
 
     /**
-     * 한식카테고리
+     * 한식가게
      */
     @GetMapping("/korea")
     public String postsKorea(Model model){
@@ -95,6 +94,9 @@ public class IndexController {
         return "korea";
     }
 
+    /**
+     * 피자 가게
+     */
     @GetMapping("/pizza")
     public String postsPizza(Model model){
 

@@ -23,9 +23,7 @@ public class Order extends BaseTimeEntity {
     @JoinColumn(name = "member_id") //외래키생성. many에서만 생성된다.
     private Member member;
 
-//
-//    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-//    private List<Food> foods = new ArrayList<>();
+
 
     @OneToMany(mappedBy = "order" , cascade = CascadeType.ALL )
     private List<Orderfood> orderfoods = new ArrayList<>();
@@ -37,9 +35,6 @@ public class Order extends BaseTimeEntity {
 출처: https://engkimbs.tistory.com/817 [새로비]
      */
 
-//    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY) //
-//    @JoinColumn(name = "delivery_id")
-//    private Delivery delivery;
 
     private int stockQuantity;
 

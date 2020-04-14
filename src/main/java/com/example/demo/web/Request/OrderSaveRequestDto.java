@@ -20,15 +20,10 @@ public class OrderSaveRequestDto {
     @Builder
     //값 등록이 필요없다.
     public OrderSaveRequestDto(int stockQuantity, DeliveryStatus status, Coupon coupon, Member member){
-//        member.getOrder().add(Order.builder().build()); //해당값 어떻게처리할가에대한 고민...
         this.coupon = coupon;
         this.stockQuantity = stockQuantity;
-        this.status = status;
+        this.status = status; //ready
         this.member = member;
-
-//        this.foods.add(food);
-//        food.Food_Order(Order);
-
 
     }
 

@@ -33,10 +33,6 @@ public class StoreRepository {
         return em.find(Store.class, id);
     }
 
-//    public List<Store> findAllDesc(String name){
-//        return em.find(Store.class, name);
-//    }
-
     public List<Store> findStore(Store store) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Store> cq = cb.createQuery(Store.class);
@@ -57,39 +53,5 @@ public class StoreRepository {
     }
 
 
-
-
-
-    public List<Store> findAll_chicken(){
-        return em.createQuery("select s  from Store s where s.name = 'BBQ' OR s.name = 'KFC'", Store.class)
-                .getResultList();
-    }
-
-
-    public List<Store> findAll_pizza(){
-        return em.createQuery("select s from Store s where s.name ='DOMINO' OR s.name = 'PIZZAHUT'", Store.class)
-                .getResultList();
-
-
-    }
-
-
-    public List<Store> findAll_zokbal(){
-        return em.createQuery("select s from Store s where s.name = 'Gazok' OR s.name = 'hyeonwuZok'", Store.class)
-                .getResultList();
-    }
-
-
-    public List<Store> findAll_korea(){
-        return em.createQuery("select s from Store s where s.name = 'KIMBABHEAVEN' OR s.name ='Kimbabhell'", Store.class)
-
-                .getResultList();
-    }
-
-
-    public List<Store> findAll(){
-        return em.createQuery("select s from Store s", Store.class)
-                .getResultList();
-    }
 
 }

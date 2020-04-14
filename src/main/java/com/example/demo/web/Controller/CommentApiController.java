@@ -13,8 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
     public class CommentApiController {
 
-        private final CommentService commentService;
-        private final CommentRepository commentRepository;
+        private final CommentService commentService;;
             //아작스통신으로 값을 넘겨줘서 저장.
             @PostMapping("/Guest/comment") //guest 댓글을 저장함
             public Long save(@RequestBody CommentSaveRequestDto requestDto){
