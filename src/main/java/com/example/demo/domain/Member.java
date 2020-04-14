@@ -1,13 +1,13 @@
-package com.example.demo.domain;
+package com.example.demo.domain.user;
 
 
+import com.example.demo.domain.Address;
+import com.example.demo.domain.BaseTimeEntity;
+import com.example.demo.domain.Coupon;
 import lombok.*;
 
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.*;
-
 @Entity
 @Getter
 @NoArgsConstructor
