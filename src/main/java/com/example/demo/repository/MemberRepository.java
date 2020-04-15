@@ -9,7 +9,7 @@ import java.util.*;
 
 public interface MemberRepository extends JpaRepository<Member, Long> {
     @Query("SELECT m FROM Member m where m.email =  :email")
-    List<Member> findByEmail(String name);
+    List<Member> findEmailCheck(String name);
     @Query("SELECT m FROM Member m where m.id = :id")
     Member findOne(Long id);
 
@@ -23,6 +23,8 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     @Modifying
     @Query("UPDATE Member m set m.address = :address where m.id = :id")
     Member UpdateAddress(Long id, Object address);
+
+    Optional<Member> findByEmail(String email);
 
 
 

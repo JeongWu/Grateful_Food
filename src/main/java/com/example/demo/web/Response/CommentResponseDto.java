@@ -20,10 +20,4 @@ public class CommentResponseDto {
     }
 
 
-    public Comments toEntity() {
-        return Comments.builder()
-                .User_comment(User_comment)
-                .Guest_comment(Guest_comment)
-                .build();
-    }
 }

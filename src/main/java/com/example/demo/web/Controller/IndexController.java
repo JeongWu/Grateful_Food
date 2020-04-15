@@ -54,11 +54,14 @@ public class IndexController {
         }
 
         return "MainContent"; //index.mustache로 자동 변환되어 반환한다.
+
     }
+
 
     /**
      * 치킨 가게
      */
+
     @GetMapping("/chickin")
     public String postsCheckin(Model model){
 

@@ -23,14 +23,15 @@ public class MemberSaveRequestDto {
 
     @Builder
     public MemberSaveRequestDto(String name, String email, String picture, int password, Address address, Coupon coupon, Role role) {
-        this.name = name;
-        this.email = email;
+        this.name = name; //현우
+        this.email = email; //네이버주소
         this.picture = picture;
-        this.password = password;
+        this.password = password; //1234
         this.address = address;
         this.coupon = coupon;
-        this.role = role;
+        this.role = role; //필수
     }
+
 
     public Member toEntity(){
         return Member.builder()

@@ -16,7 +16,7 @@ public class OrderApiController {
 
 
 
-    @PostMapping("/Guest/order") //주문정보저장
+    @PostMapping("/guest/order") //주문정보저장
     public Long save(@RequestBody OrderSaveRequestDto requestDto){
         return orderService.order(requestDto);
     }

@@ -21,7 +21,7 @@ public class MemberApiController {
     private final HttpSession httpSession;
 
     //회원가입
-    @PostMapping("/Guest/singup")
+    @PostMapping("/guest/singup")
     public String Join(@RequestBody MemberSaveRequestDto requestDto, HttpServletRequest request) {
         Member member = memberService.SingUp(requestDto);
         if (member == null) {
@@ -32,7 +32,7 @@ public class MemberApiController {
     }
 
     //사장님 회원가입
-    @PostMapping("/Chairman/singup")
+    @PostMapping("/chairman/singup")
     public String Join_User(@RequestBody MemberSaveRequestDto requestDto, HttpServletRequest request) {
         Member member = memberService.SingUp(requestDto);
         if (member == null) {
@@ -45,22 +45,29 @@ public class MemberApiController {
         }
     }
 
-    //비밀번호 아이디 체크
+    //비밀번호 아이디 체크 후 로그인
     @ResponseBody
     @RequestMapping("/login") //ajax
-    public String check_id(@RequestBody HashMap<String, Object> map){
-        String result = memberService.check_login(map.get("name"), map.get("password"));
+    public String check_id(@RequestBody HashMap<String, Object> map) {
+        String result = memberService.Check_Login(map.get("name"), map.get("password"));
         return result;
     }
 
     //로그아웃
     @RequestMapping(value = "/logout", method = RequestMethod.POST)
-    public String modify(int password, String name, HttpServletRequest request) {
-
+    public void logout(HttpServletRequest request) {
         HttpSession session = request.getSession();
 
         session.invalidate();
-        return"redirect:/";
+//        return"redirect:/";
     }
-
 }
+//    정보 수정
+//    public String modify(int password, String name, HttpServletRequest request) {
+//
+//        HttpSession session = request.getSession();
+
+
+//    }
+
+
