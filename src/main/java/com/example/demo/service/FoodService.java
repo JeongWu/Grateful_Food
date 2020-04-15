@@ -3,15 +3,18 @@ package com.example.demo.service;
 
 
 
+import com.example.demo.domain.Food;
+import com.example.demo.domain.Store;
 import com.example.demo.repository.FoodRepository;
 
-import com.example.demo.repository.MemberRepository;
-import com.example.demo.repository.OrderRepository;
+import com.example.demo.repository.StoreRepository;
 import com.example.demo.web.Response.FoodListResponseDto;
+import com.example.demo.web.Response.StoreListResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,40 +22,67 @@ import java.util.stream.Collectors;
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class FoodService {
-
-    private final OrderRepository orderRepository; //  직접만든 클래스
     private final FoodRepository foodRepository;
-    private final MemberRepository memberRepository;
+    private final StoreRepository storeRepository;
 
     @Transactional(readOnly = true)
-    public List<FoodListResponseDto> findAllDesc(){
-        return foodRepository.findAll().stream().map(FoodListResponseDto::new).collect(Collectors.toList());
+    public List<FoodListResponseDto> findOne(int id) {
+        List<Food> entity = foodRepository.findAll();
+        List<Food> result_entity = new ArrayList<>();
+        for(Food s : entity){
+            if(s.getStore().getId() ==id){
+                result_entity.add(s);
+            }
+        }
+        return result_entity.stream().map(FoodListResponseDto::new).collect(Collectors.toList());
     }
 
-
-
-
-
-    /**
-     *  필요없음
-     * @return
-
-    public List<Food> findFoods() {
-        return foodRepository.findAll(); //푸드정보
+    @Transactional(readOnly = true)
+    public StoreListResponseDto findStore(int id) {
+        List<Food> entity = foodRepository.findAll();
+        Store store = null;
+        for (Food s : entity) {
+            if (s.getStore().getId() == id) {
+                store = s.getStore();
+            }
+        }
+        return new StoreListResponseDto(store);
     }
 
-
-    @Transactional(readOnly =true)
-    public Food findOne(Long foodId) {
-        return foodRepository.findOne(foodId);
-    }
-
-    @Transactional
-    public Long SingUp(Food food) {
-        foodRepository.save(food);
-        return food.getId();
-    }
-     */
 }
 
+//    @Transactional(readOnly = true)
+//    public List<Food> findtest(Long id){
+//
+//        List<Food> foods = foodRepository.findAll();
+//
+//    }
 
+//
+//
+//
+//
+//
+//    /**
+//     *  필요없음
+//     * @return
+//
+//    public List<Food> findFoods() {
+//        return foodRepository.findAll(); //푸드정보
+//    }
+//
+//
+//    @Transactional(readOnly =true)
+//    public Food findOne(Long foodId) {
+//        return foodRepository.findOne(foodId);
+//    }
+//
+//    @Transactional
+//    public Long SingUp(Food food) {
+//        foodRepository.save(food);
+//        return food.getId();
+//    }
+//     */
+//}
+//
+//

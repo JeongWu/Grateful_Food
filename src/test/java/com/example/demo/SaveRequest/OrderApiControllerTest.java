@@ -26,7 +26,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Transactional
-@Rollback(false)
+//@Rollback(false)
 public class OrderApiControllerTest {
 
 
@@ -44,8 +44,6 @@ public class OrderApiControllerTest {
     private MemberRepository memberRepository;
     @Autowired
     private FoodRepository foodRepository;
-    @Autowired
-    private DeliveryRepository deliveryRepository;
 
 
 //    @After
@@ -61,17 +59,15 @@ public class OrderApiControllerTest {
          2. 음식정보
          3. 쿠폰값
          4. 주소정보값
-         5. 수량
-         아래항목 전부 앞에서 던져준다.
+         5. 수량(개개인 음식수량) 어떻게 처리할까
          */
         Member member = memberRepository.findOne(1L);
-        Food food = foodRepository.findOne(1L);
+        Food food = foodRepository.findOne(1L); //도미노의 고구마피자 주문
 
-
-        // order저장 성공
         OrderSaveRequestDto requestDto = OrderSaveRequestDto.builder()
-                .coupon(member.getCoupon())
-                .stockQuantity(2000)
+                .coupon(member.getCoupon()) // 쿠폰사용유무
+                .stockQuantity(2) //수량 2000개
+                .member(member)
                 .build();
 
         /**
@@ -79,16 +75,13 @@ public class OrderApiControllerTest {
          */
         Long orderid = orderService.order(requestDto);
 
-        Order order = orderRepository.findOne(orderid);
-
-        //추가해줘야함. deliveryid가 매핑이될까? 성공;;
-        orderService.mappingOrder(requestDto, order, member, food);
 
 
         /**
-         * orderfood 세팅 + order / orderfood 매핑
+         * orderfood 세팅을 어떻게 해줄까?
          */
-        orderService.saveOrderfood(orderid);
+        //****
+        orderService.saveOrderfood(orderid, food);
 //
 //
 //        String url = "http://localhost:" + port + "/Guest/order";

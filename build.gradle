@@ -2,8 +2,10 @@ plugins {
 	id 'org.springframework.boot' version '2.2.5.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
 	id 'java'
-	id 'jacoco'
+	//	id 'jacoco'
 }
+
+//apply plugin: "com.moowork.node"
 
 
 group = 'com.example'
@@ -78,12 +80,14 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-oauth2-client')
 	compile("org.springframework.boot:spring-boot-starter-security")
 	compile('org.springframework.session:spring-session-jdbc')
-	//testCompile group: 'org.jacoco', name: 'org.jacoco.agent', version: '0.8.4'
+
+	testCompile group: 'org.jacoco', name: 'org.jacoco.agent', version: '0.8.4'
 
 
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.h2database:h2'
-
+//	compile 'mysql:mysql-connector-java'
+//	runtime('mysql:mysql-connector-java')
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
@@ -93,20 +97,20 @@ dependencies {
 	implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 
 }
-
-jacoco{
-	toolVersion = '0.8.4'
-}
+//
+//jacoco{
+//	toolVersion = '0.8.4'
+//}
 //configure the jacoco test report
-jacocoTestReport{
-	reports{
-		html.enabled = true
-		xml.enabled = true
-		csv.enabled = true
-
-	}
-	finalizedBy 'jacocoTestCoverageVerification'
-}
+//jacocoTestReport{
+//	reports{
+//		html.enabled = true
+//		xml.enabled = true
+//		csv.enabled = true
+//
+//	}
+//	finalizedBy 'jacocoTestCoverageVerification'
+//}
 
 test {
 	useJUnitPlatform()

@@ -10,9 +10,7 @@ import java.util.List;
 public interface FoodRepository extends JpaRepository<Food, Long> {
 
 
-    @Query("SELECT m FROM Food m where m.id = :id")
+    @Query("SELECT f FROM Food f where f.id = :id")
     Food findOne(Long id);
 
-    @Query("SELECT m FROM Food m")
-    List<Food> findAll();
 }

@@ -24,12 +24,9 @@ public class Order extends BaseTimeEntity {
     private Member member;
 
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    private List<Food> foods = new ArrayList<>();
 
     @OneToMany(mappedBy = "order" , cascade = CascadeType.ALL )
     private List<Orderfood> orderfoods = new ArrayList<>();
-
 
     /*
       엔티티 Cascade는 엔티티의 상태 변화를 전파시키는 옵션
@@ -38,10 +35,6 @@ public class Order extends BaseTimeEntity {
 출처: https://engkimbs.tistory.com/817 [새로비]
      */
 
-    //order가 연관관계주인이다.
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY) //
-    @JoinColumn(name = "delivery_id")
-    private Delivery delivery;
 
     private int stockQuantity;
 
@@ -51,25 +44,21 @@ public class Order extends BaseTimeEntity {
     @Enumerated(EnumType.STRING)
     private Coupon coupon;
 
-    //oneTOone매핑
-    public void applyDelivery(Delivery delivery){
-        this.delivery = delivery;
-        delivery.applyOrder(this);
-    }
 
 
+//    public void applyDelivery(Delivery delivery){
+//        this.delivery = delivery;
+//        delivery.applyOrder(this);
+//    }
 
 
-
-    //    해당값을 member에 넣어야될까?
     public void setMember(Member member) {
         this.member = member; //member값을 입력받는다
-//        member.getOrders().add(this); //member값을 Oreder을 리스트에 더해준다.
     }
 
 
 
-    //안되면 setter해보기
+
     public void addOrderFood(Orderfood orderfood) {
         orderfood.setOrder(this);
         orderfoods.add(orderfood); // orderfoods라는 배열에 orderfood 하나의 이름을 저장한다.
@@ -77,19 +66,20 @@ public class Order extends BaseTimeEntity {
 
 
 
-    public void addFood(Food food) {
-        food.Setfood_order(this);
-        this.foods.add(food);
-    }
+//    public void addFood(Food food) {
+//        food.Setfood_order(this);
+//        this.foods.add(food);
+//    }
 
 
 
 
-    public void setOrderfoods(List<Orderfood> orderfood ) {
-        for(Orderfood orderfoods : orderfood){
-            addOrderFood(orderfoods);
-        }
-    }
+//필요없음
+//    public void setOrderfoods(List<Orderfood> orderfood ) {
+//        for(Orderfood orderfoods : orderfood){
+//            addOrderFood(orderfoods);
+//        }
+//    }
 
     /**
      *  이거 주문 생성 할때 만드는 것임 만약에 필요한 경우에 새롭게 추가추가
@@ -99,26 +89,15 @@ public class Order extends BaseTimeEntity {
 
 
     @Builder
-    public Order(int stockQuantity, Coupon coupon) {
+    public Order(int stockQuantity, Coupon coupon, Member member) {
         SetReady_DeliveryStatus(DeliveryStatus.READY); //디폴트값
         this.stockQuantity = stockQuantity;
         this.coupon = coupon;
-
+        this.member =member;
     }
 
 
-//    public  static Order createOrder(Member member, Delivery delivery, Orderfood... orderfood)
-//    {
-//
-//        Order order = new Order();
-//        order.setMember(member);
-//        order.SetDelivery(delivery);
 
-//        order.SetReady_DeliveryStatus(DeliveryStatus.READY);
-//        return order;
-//    }
-
-    //orderfood,
 
     public void SetReady_DeliveryStatus(DeliveryStatus status){
         this.status = status;
@@ -129,7 +108,7 @@ public class Order extends BaseTimeEntity {
 
     //cancle하기위해서 필수이다.
     public  void cancel() {
-        if(delivery.getStatus() == DeliveryStatus.ARRIVE) {
+        if(this.getStatus() == DeliveryStatus.ARRIVE) {
             throw new IllegalStateException("출발은 상태에서는 취소 하실 수" +
                     "없습니다.");
         }

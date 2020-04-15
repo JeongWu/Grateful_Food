@@ -1,12 +1,13 @@
 package com.example.demo.domain;
 
 
+import com.example.demo.domain.user.Role;
 import lombok.*;
 
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -17,20 +18,16 @@ public class Member extends BaseTimeEntity {
         @Column(name = "member_id")
         private Long id;
 
-        @Column
+        @Column(nullable = false)
         private String name;
 
+        @Column(length=20)
+        private String email;
+        @Column
+        private String picture;
 
-        @OneToMany(mappedBy = "member", fetch = FetchType.LAZY) //oneToMany ; mappedBy = owner, fetch = 지연로딩
-        private List<Order> orders = new ArrayList<>();  //member, order을 1:n으로 매핑시키고 order값을 가져온다.
-
-
-        @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
-        private List<Food> foods = new ArrayList<>();
-
-
-        @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
-        private List<Store> store = new ArrayList<>();
+        @Column(nullable=false)
+        private int password;
 
         @Embedded
         private Address address;
@@ -38,21 +35,36 @@ public class Member extends BaseTimeEntity {
         @Enumerated(EnumType.STRING)
         private Coupon coupon;
 
+        @Enumerated(EnumType.STRING)
+        @Column(nullable = false)
+        private Role role;
+
+        @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
+        private List<Comments> comment = new ArrayList<>();
+
         @Builder // 값변경.
-        public  Member(String name, Address address, Coupon coupon) {
+        public  Member(String name, Address address, Coupon coupon, Role role,String email, String picture,int password) {
                 this.name = name;
                 this.address = address;
                 this.coupon = coupon;
+                this.role = role;
+                this.picture = picture;
+                this.email = email;
+                this.password = password;
+
+
+
         }
 
-        public void Orderadd(Order order) {
-                order.setMember(this);
-                this.orders.add(order); //member값을 Oreder을 리스트에 더해준다.
+        public Member update(String name, String picture) {
+                this.name = name;
+                this.picture = picture;
+
+                return this;
         }
 
-        public void Foodadd(Food food) {
-                food.Setfood_member(this);
-                this.foods.add(food); //member값을 Oreder을 리스트에 더해준다.
+        public String getRoleKey() {
+                return this.role.getKey();
         }
 
 }

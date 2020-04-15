@@ -26,7 +26,6 @@ public class OrderRepository {
 
 
     private final EntityManager em;
-//    private final JpaEntityInformation<Order, ?> entityInformation;
 
     @Transactional
     public Order save(Order order) {

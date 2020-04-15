@@ -15,10 +15,6 @@ import javax.persistence.*;
 public class Kimbabhell extends Food {
 
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "hell_id")
-    private Long id;
     private  String hell_value;
     private String hell_taste;
 

@@ -17,10 +17,6 @@ public class KimbabHeaven extends Food {
 
 
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "heaven_id")
-    private Long id;
     private  String heaven_value;
     private String heaven_taste;
 

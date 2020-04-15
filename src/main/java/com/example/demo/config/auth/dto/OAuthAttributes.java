@@ -1,8 +1,8 @@
 package com.example.demo.config.auth.dto;
 
 //DTO
+import com.example.demo.domain.Member;
 import com.example.demo.domain.user.Role;
-import com.example.demo.domain.user.User;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -59,8 +59,8 @@ public class OAuthAttributes {
     //User엔티티생성, OAuthAttributes에서 엔티티를 생성하는 시점은 처음 가입할때 이다.
     //가입할때의 기본권한을 GUEST로 주기위해서 role빌더값에는 Role.GUEST를 사용한다.
     //해당클래스 생성후 sessionuser 클래스생성
-    public User toEntity() {
-        return User.builder()
+    public Member toEntity() {
+        return Member.builder()
                 .name(name)
                 .email(email)
                 .picture(picture)

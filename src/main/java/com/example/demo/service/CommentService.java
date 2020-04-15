@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
-
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -32,7 +31,7 @@ public class CommentService {
             return id;
     }
 
-    //띄우기
+//    //띄우기
     public CommentResponseDto findById(Long id){
         Comments entity = commentRepository.findById(id)
                 .orElseThrow(()->new IllegalArgumentException("글이 없습니다. id="+ id));

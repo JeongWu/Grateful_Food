@@ -18,10 +18,8 @@ import java.util.List;
 public class OrderService {
 
     private final OrderRepository orderRepository;
-    private final MemberRepository memberRepository;
     private final FoodRepository foodRepository;
     private final StoreRepository storeRepository;
-    private final DeliveryRepository deliveryRepository;
     private final OrderfoodRepository orderfoodRepository;
 
 
@@ -45,37 +43,17 @@ public class OrderService {
 
     }
 
-    //member, delivery, food 외래키 매핑 완료
+    //orderfood매핑하기
     @Transactional
-    public void mappingOrder(OrderSaveRequestDto orderSaveRequestDto,Order order,Member member,Food food ){
-        member.Orderadd(order);
-        member.Foodadd(food);
-        order.addFood(food);
-        Delivery delivery = new Delivery();
-        delivery.DeliverySetAddress_InOrder(member.getAddress().getZipcode(), member.getAddress().getStreet()); //주소를 입력받아서 계속 지정하는 형식.
-        delivery.DeliverySetstatus_InOrder(orderSaveRequestDto.getStatus());
-        delivery.DeliverySetcoupon_InOrder(orderSaveRequestDto.getCoupon());
-
-//        deliveryRepository.save(delivery);
-        order.applyDelivery(delivery); //oneToone mapping 과연?
-
-        deliveryRepository.save(delivery);
-        memberRepository.save(member);
-        foodRepository.save(food);
-
-    }
-
-
-    //order food 매핑
-    @Transactional
-    public void saveOrderfood(Long id, Orderfood... orderfoodss){
+    public void saveOrderfood(Long id, Food food, Orderfood... orderfoodss){
         Order order = orderRepository.findOne(id);
         //  //음식 주문로직 -> 음식 , 가격 , 개수가 담겨 있음 -> 문제는 추후 계산 문제
-        Orderfood orderfood = Orderfood.createOrderfood(order.getMember().getFoods().get(1),order.getStockQuantity());
-
-        for(Orderfood orderfoods : orderfoodss){
-            order.addOrderFood(orderfoods);
-        }
+        // 하나밖에 못가져온다 값을...
+        Orderfood orderfood = Orderfood.createOrderfood(food,order.getStockQuantity());
+        order.addOrderFood(orderfood); //
+//        for(Orderfood orderfoods : orderfoodss){
+//            order.addOrderFood(orderfoods);
+//        }
 
         orderfoodRepository.save(orderfood);
 
@@ -119,14 +97,8 @@ public class OrderService {
 
 }
 
-//검색
-//    public List<Order> findOrders(OrderSearch orderSearch) {
-//        return  orderRepository.findAll(orderSearch);
-//
-//    }
 
-//    @Transactional(readOnly =true)
-//    public List<OrderListResponseDto> b_findOrders(){return orderRepository.b_findAll().stream().map(OrderListResponseDto::new).collect(Collectors.toList()); }
-//}
+
+
 
 //cascade -> 정보 다날려~
