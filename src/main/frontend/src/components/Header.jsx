@@ -7,10 +7,11 @@ import {
   Modal,
   Form,
   InputGroup,
-  FormControl
+  FormControl,
+  Row
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
+import "../App.css";
 class Header extends Component {
   constructor(props) {
     super(props);
@@ -120,17 +121,21 @@ class Header extends Component {
           animation={false}
         >
           <Modal.Header closeButton>
-            <Modal.Title>회원가입</Modal.Title>
+            <Modal.Title>회원가입<br></br><div className="small">* 항목은 필수입력 항목입니다.</div></Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <label>아이디 입력</label>
+            <label>* 이름</label>
             <InputGroup className="mb-3">
               <FormControl aria-label="ID" aria-describedby="basic-addon2" />
               <InputGroup.Append>
                 <Button variant="outline-secondary">중복확인</Button>
               </InputGroup.Append>
             </InputGroup>
-            <label>비밀번호 입력</label>
+            <label>* 이메일 주소</label>
+            <InputGroup className="mb-3">
+              <FormControl aria-label="ID" aria-describedby="basic-addon2" />
+            </InputGroup>
+            <label>* 비밀번호 입력</label>
             <InputGroup className="mb-3">
               <FormControl
                 type="password"
@@ -153,18 +158,13 @@ class Header extends Component {
                 <Button variant="outline-secondary">확인</Button>
               </InputGroup.Append>
             </InputGroup>
-            <label>이메일 주소</label>
+            <label>주소</label>
             <InputGroup className="mb-3">
               <FormControl aria-label="ID" aria-describedby="basic-addon2" />
             </InputGroup>
-            <label>핸드폰 번호</label>
-            <InputGroup className="mb-3">
-              <FormControl aria-label="ID" aria-describedby="basic-addon2" />
-              -
-              <FormControl aria-label="ID" aria-describedby="basic-addon2" />
-              -
-              <FormControl aria-label="ID" aria-describedby="basic-addon2" />
-            </InputGroup>
+            <Form.Group controlId="formBasicCheckbox">
+    <Form.Check type="checkbox" label="일단넣어놓은 체크박스(나중에 롤 대비)" />
+  </Form.Group>
           </Modal.Body>
           <Modal.Footer>
             <Button
