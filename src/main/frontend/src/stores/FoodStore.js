@@ -2,6 +2,9 @@ import { observable, action, computed } from "mobx";
 
 //test함
 export default class FoodStore {
+  constructor(root) {
+    this.root = root;
+  }
   @observable
   categoryList = [
     { id: 0, name: "전체보기" },

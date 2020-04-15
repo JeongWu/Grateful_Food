@@ -4,12 +4,12 @@ import App from "./App";
 import { Provider } from "mobx-react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
-import FoodStore from "./stores/FoodStore";
+import RootStore from "./stores";
 
-const foodStore = new FoodStore();
+const root = new RootStore();
 
 ReactDOM.render(
-  <Provider foodStore={foodStore}>
+  <Provider {...root}>
     <App />
   </Provider>,
   document.getElementById("root")
