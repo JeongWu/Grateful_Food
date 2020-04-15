@@ -6,6 +6,7 @@ import MainContent from "./components/MainContent";
 import SecondContent from "./components/second/SecondContent";
 import ThirdContent from "./components/third/ThirdContent";
 import Myinfo from "./components/Myinfo";
+import Test from "./components/Test";
 import OrderList from "./components/OrderList";
 import { observer, inject } from "mobx-react";
 import "./App.css";
@@ -28,7 +29,7 @@ class App extends Component {
       <Router>
         <Header />
         <Route exact path="/" component={MainContent} />
-        {categoryList.map(list => (
+        {categoryList.map((list) => (
           <Route
             key={list.id}
             path={"/category" + list.id}
@@ -36,7 +37,8 @@ class App extends Component {
           />
         ))}{" "}
         <Route path="/store" component={ThirdContent} />
-        <Route path="/order" component={OrderList} />
+        <Route path="/test" component={Test} />
+        {/* <Route path="/order" component={OrderList} />*/}
         <Route path="/myinfo" component={Myinfo} />
         <Footer />
       </Router>
