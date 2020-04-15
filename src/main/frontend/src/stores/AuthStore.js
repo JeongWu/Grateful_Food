@@ -3,11 +3,11 @@ import { observable, action } from "mobx";
 
 const _http = axios.create({
   baseURL: "http://localhost:8080",
-  /*headers: {
-    "content-type": "application/json;charset=utf-8"
+  headers: {
+    "content-type": "application/json;charset=utf-8",
+    "Access-Control-Allow-Origin": "*",
   },
-  withCredentials: true
-*/
+  withCredentials: true,
 });
 
 export default class AuthStore {

@@ -7,7 +7,7 @@ import {
   ListGroup,
   Card,
   Button,
-  Modal
+  Modal,
 } from "react-bootstrap";
 import { IoMdRemoveCircleOutline } from "react-icons/io";
 
@@ -23,7 +23,7 @@ class Storeinfo extends Component {
     const { foodStore } = props;
     this.foodStore = foodStore;
     this.state = {
-      order: false
+      order: false,
     };
   }
 
@@ -34,7 +34,7 @@ class Storeinfo extends Component {
       selectedMenu,
       putItem,
       takeItem,
-      total
+      total,
     } = this.foodStore;
     const { order } = this.state;
     return (
@@ -86,8 +86,9 @@ class Storeinfo extends Component {
             </Row>
             <Row>
               <ListGroup style={{ width: "1000px" }}>
-                {selectedList.menu.map(item => (
+                {selectedList.menu.map((item) => (
                   <ListGroup.Item
+                    action
                     key={item.name}
                     onClick={() => putItem(item.name, item.price)}
                   >
@@ -104,7 +105,7 @@ class Storeinfo extends Component {
               <Card.Header as="h5">주문표</Card.Header>
               <Card.Body>
                 <Card.Text>
-                  {selectedMenu.map(item => (
+                  {selectedMenu.map((item) => (
                     <div>
                       {item.name} {item.price}원 {item.count}{" "}
                       <IoMdRemoveCircleOutline
