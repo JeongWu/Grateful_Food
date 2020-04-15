@@ -11,7 +11,7 @@ export default class FoodStore {
     { id: 4, name: "한식" },
     { id: 5, name: "일식" },
     { id: 6, name: "족발/보쌈" },
-    { id: 7, name: "분식" }
+    { id: 7, name: "분식" },
   ];
 
   @observable
@@ -21,27 +21,21 @@ export default class FoodStore {
   selectedMenu = [];
 
   @action
-  takeItem = name => {
-    const item = this.selectedMenu.find(item => item.name === name);
+  takeItem = (name) => {
+    const item = this.selectedMenu.find((item) => item.name === name);
     item.count--;
     if (item.count === 0) this.selectedMenu.remove(item);
   };
 
   @action
   putItem = (name, price) => {
-    if (localStorage.getItem("cart") === null) {
-      localStorage.setItem("cart", JSON.stringify([{ name, price, count: 1 }]));
+    const exist = this.selectedMenu.find((item) => item.name === name);
+    if (!exist) {
+      this.selectedMenu = [...this.selectedMenu, { name, price, count: 1 }];
+      //this.selectedMenu.push({ name, price, count: 1 });
+      // return;
     } else {
-      let cart = JSON.parse(localStorage.getItem("cart"));
-      const exist = cart.find(item => item.name === name);
-      if (!exist) {
-        localStorage.setItem(
-          "cart",
-          JSON.stringify([...cart, { name, price, count: 1 }])
-        );
-      } else {
-        exist.count++;
-      }
+      exist.count++;
     }
   };
 
@@ -59,7 +53,7 @@ export default class FoodStore {
   selectedList = [];
 
   @action
-  selectList = item => {
+  selectList = (item) => {
     console.log("selectList");
     this.selectedList = item;
   };
@@ -75,8 +69,8 @@ export default class FoodStore {
         address: "성남",
         menu: [
           { name: "황금올리브치킨", price: "18000" },
-          { name: "황금올리브치킨 양념", price: "19500" }
-        ]
+          { name: "황금올리브치킨 양념", price: "19500" },
+        ],
       },
       {
         name: "피자헛",
@@ -85,8 +79,8 @@ export default class FoodStore {
         address: "서울",
         menu: [
           { name: "베이컨 포테이토 L", price: "18000" },
-          { name: "대표메가더블세트", price: "19500" }
-        ]
+          { name: "대표메가더블세트", price: "19500" },
+        ],
       },
       {
         name: "몽고반점",
@@ -95,8 +89,8 @@ export default class FoodStore {
         address: "수원",
         menu: [
           { name: "자장면", price: "18000" },
-          { name: "짬뽕", price: "19500" }
-        ]
+          { name: "짬뽕", price: "19500" },
+        ],
       },
       {
         name: "비비고",
@@ -105,8 +99,8 @@ export default class FoodStore {
         address: "용인",
         menu: [
           { name: "김밥", price: "18000" },
-          { name: "쫄면", price: "19500" }
-        ]
+          { name: "쫄면", price: "19500" },
+        ],
       },
       {
         name: "미소야",
@@ -115,8 +109,8 @@ export default class FoodStore {
         address: "평택",
         menu: [
           { name: "돈까스", price: "18000" },
-          { name: "우동", price: "19500" }
-        ]
+          { name: "우동", price: "19500" },
+        ],
       },
       {
         name: "가족",
@@ -125,8 +119,8 @@ export default class FoodStore {
         address: "인천",
         menu: [
           { name: "족발", price: "18000" },
-          { name: "보쌈", price: "19500" }
-        ]
+          { name: "보쌈", price: "19500" },
+        ],
       },
       {
         name: "엽떡",
@@ -135,8 +129,8 @@ export default class FoodStore {
         address: "안산",
         menu: [
           { name: "엽떡", price: "18000" },
-          { name: "엽기 오뎅", price: "19500" }
-        ]
+          { name: "엽기 오뎅", price: "19500" },
+        ],
       },
       {
         name: "현우네족발집",
@@ -145,25 +139,25 @@ export default class FoodStore {
         address: "부산",
         menu: [
           { name: "현우족발", price: "18000" },
-          { name: "현우보쌈", price: "19500" }
-        ]
-      }
+          { name: "현우보쌈", price: "19500" },
+        ],
+      },
     ];
     const list = [...this.storeList];
     const key = parseInt(window.sessionStorage.getItem("tabkey"));
     this.storeList =
-      key === 0 ? list : list.filter(item => item.category === key);
+      key === 0 ? list : list.filter((item) => item.category === key);
   };
 
   @action
-  changeTab = e => {
+  changeTab = (e) => {
     console.log("changeTab");
     window.sessionStorage.setItem("tabkey", parseInt(e)); //eventKey가 string으로 넘어옴
     this.initialize();
   };
 
   @action
-  handleSelect = key => {
+  handleSelect = (key) => {
     console.log("handleSelect");
     window.sessionStorage.setItem("tabkey", key);
     this.initialize();
