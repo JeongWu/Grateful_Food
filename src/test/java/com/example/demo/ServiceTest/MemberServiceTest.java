@@ -51,7 +51,6 @@ public class MemberServiceTest {
                 .build());
 
         System.out.println("--------------------------");
-
         List<Member> mm = memberRepository.findAll();
         System.out.println(memberRepository.findOne(mm.get(0).getId()));
         Member members = mm.get(0);

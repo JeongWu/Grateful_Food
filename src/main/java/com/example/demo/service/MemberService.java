@@ -3,10 +3,9 @@ package com.example.demo.service;
 
 
 import com.example.demo.domain.Member;
-import com.example.demo.repository.FoodRepository;
 import com.example.demo.repository.MemberRepository;
-import com.example.demo.web.Request.CommentSaveRequestDto;
 import com.example.demo.web.Request.MemberSaveRequestDto;
+import com.example.demo.web.Request.MemberUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -34,8 +33,8 @@ public class MemberService {
 
     //회원가입 아이디 중복체크
     @Transactional
-    private String validateDuplicateMember(MemberSaveRequestDto requestDto) {
-        List<Member> findMembers = memberRepository.findByEmail(requestDto.getEmail());
+    public String validateDuplicateMember(MemberSaveRequestDto requestDto) {
+        List<Member> findMembers = memberRepository.findEmailCheck(requestDto.getEmail());
         if (!findMembers.isEmpty()) {
 //            throw new IllegalStateException("회원가입된 사람입니다.");
             return "NO";
@@ -43,9 +42,9 @@ public class MemberService {
         return "OK";
     }
 
-    //아이디 패스워드 확인
+    //아이디 패스워드 확인 후 로그인
     @Transactional
-    public String check_login(Object email, Object password){
+    public String Check_Login(Object email, Object password){
         Member member = memberRepository.findByEmailPassword(email, password);
         if (member == null) {
 //            throw new IllegalStateException("아이디와 비밀번호를 다시 확인해 주세요.");
@@ -56,17 +55,12 @@ public class MemberService {
     }
 
 
-//    //정보 수정
-//    @Transactional
-//    public String check_login(Object email, Object password){
-//        Member member = memberRepository.findByEmailPassword(email, password);
-//        if (member == null) {
-////            throw new IllegalStateException("아이디와 비밀번호를 다시 확인해 주세요.");
-//            return "NO";
-//        }
-//
-//        return "YES";
-//    }
+    //정보 수정
+    @Transactional
+    public void InfoUpdate(Long id, MemberUpdateRequestDto requestDto){
+        Member member = memberRepository.getOne(id);
+        member.update(requestDto.getPassword());
+    }
 
 
 
