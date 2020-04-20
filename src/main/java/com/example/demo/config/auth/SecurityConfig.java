@@ -36,8 +36,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/", "/css/**", "/images/**", "/js/**", "/h2-console/**", "/profile","/Guest/**").permitAll()//권한관리대상 지정옵션
 //               //코멘트 부분 권한
 //                .antMatchers("/Guest/**").hasRole(Role.GUEST.name())//Test코드시에 주석처리
-                .antMatchers("/Chairman/**").hasRole(Role.USER.name())
+                .antMatchers("/chairman/**").hasRole(Role.USER.name())
                 .antMatchers("/post/chairman").hasRole(Role.USER.name())
+                .antMatchers("/api/guest/**").hasRole(Role.GUEST.name())
+                .antMatchers("/api/user/**").hasRole(Role.USER.name())
                 .anyRequest().authenticated() //설정된 url이외의 나머지 url들을 나타낸다
 
                 .and()
