@@ -34,8 +34,8 @@ public class MemberService {
     //회원가입 아이디 중복체크
     @Transactional
     public String validateDuplicateMember(MemberSaveRequestDto requestDto) {
-        List<Member> findMembers = memberRepository.findEmailCheck(requestDto.getEmail());
-        if (!findMembers.isEmpty()) {
+        Member findMember = memberRepository.findEmailCheck(requestDto.getEmail());
+        if (findMember ==null) {
 //            throw new IllegalStateException("회원가입된 사람입니다.");
             return "NO";
         }
@@ -57,9 +57,9 @@ public class MemberService {
 
     //정보 수정
     @Transactional
-    public void InfoUpdate(Long id, MemberUpdateRequestDto requestDto){
-        Member member = memberRepository.getOne(id);
-        member.update(requestDto.getPassword());
+    public void InfoUpdate(String email, MemberUpdateRequestDto requestDto){
+        Member m = memberRepository.findEmailCheck(email);
+        m.update(requestDto.getPassword());
     }
 
 

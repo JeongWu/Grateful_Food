@@ -20,13 +20,13 @@ public class MemberUpdateRequestDto {
     private Role role;
 
     @Builder
-    public MemberUpdateRequestDto(Member entity) {
-        this.name = entity.getName();
-        this.email = entity.getEmail();
-        this.picture = entity.getPicture();
-        this.password = entity.getPassword();
-        this.address = entity.getAddress();
-        this.coupon = entity.getCoupon();
-        this.role = entity.getRole();
+    public MemberUpdateRequestDto(String name, String email, String picture, int password, Address address, Coupon coupon, Role role) {
+        this.name = name;
+        this.email = email;
+        this.picture = picture;
+        this.password = password;
+        this.address = address;
+        this.coupon = coupon;
+        this.role = role;
     }
 }

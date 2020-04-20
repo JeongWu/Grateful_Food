@@ -7,12 +7,17 @@ import com.example.demo.repository.FoodRepository;
 import com.example.demo.repository.MemberRepository;
 
 import com.example.demo.service.MemberService;
+import com.example.demo.web.Request.MemberSaveRequestDto;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import org.springframework.test.annotation.Rollback;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
@@ -24,50 +29,56 @@ import static org.junit.Assert.fail;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@Rollback(false)
+//@Configuration
+//@ComponentScan({"com.example.demo.repository", "com.example.demo.service"})
+//@DataJpaTest
 public class MemberServiceTest {
+
+    @Autowired
+    MemberService  memberService;
 
     @Autowired
     MemberRepository memberRepository;
 
-    @Autowired
-    MemberService memberService;
-
+//    @Autowired
+//    private TestEntityManager testEntityManager;
+//
+//    @Autowired
+//    private MemberService memberService;
 
     @Test
     public void 회원가입_Test() throws Exception {
-        String name = "정우";
-        String street = "경기도";
-        String zipcode = "오리";
+        String name = "현우";
+        String street = "서울";
+        String zipcode = "광진";
         Address address = new Address(zipcode, street);
 
+        MemberSaveRequestDto memberSaveRequestDto = new MemberSaveRequestDto();
+//        MemberSaveRequestDto memberSaveRequestDto = testEntityManager.persist(new MemberSaveRequestDto());
 
-        Member member = new Member();
-        memberRepository.save(member.builder()
+        memberService.SingUp(memberSaveRequestDto.builder()
                 .name(name)
+                .email("tkawnd111@gmail.com")
                 .address(address)
                 .coupon(이천원).role(Role.GUEST)
                 .password(1234)
                 .build());
 
         System.out.println("--------------------------");
-        List<Member> mm = memberRepository.findAll();
-        System.out.println(memberRepository.findOne(mm.get(0).getId()));
-        Member members = mm.get(0);
-        System.out.println(members.getCreatedDate());
-        assertThat(members.getName()).isEqualTo(name);
-        assertThat(members.getCoupon()).isEqualTo(이천원);
+
+//
+//        assertThat(member.getCoupon()).isEqualTo(이천원);
     }
 
-    @Test
-    public void 아이디비밀번호체크_Test() throws Exception {
-
-        String name ="정우";
-        int password = 1234;
-        String result = memberService.check_login(name, password);
-        assertThat(result).isEqualTo("YES");
-
-    }
+//    @Test
+//    public void 아이디비밀번호체크_Test() throws Exception {
+//
+//        String name ="정우";
+//        int password = 1234;
+//        String result = memberService.Check_Login(name, password);
+//        assertThat(result).isEqualTo("YES");
+//
+//    }
 
 
 

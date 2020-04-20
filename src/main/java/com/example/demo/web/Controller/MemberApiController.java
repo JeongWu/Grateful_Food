@@ -3,6 +3,7 @@ package com.example.demo.web.Controller;
 import com.example.demo.domain.Member;
 import com.example.demo.service.MemberService;
 import com.example.demo.web.Request.MemberSaveRequestDto;
+import com.example.demo.web.Request.MemberUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -21,8 +22,8 @@ public class MemberApiController {
     private final HttpSession httpSession;
 
     //회원가입
-    @PostMapping("/guest/singup")
-    public String Join(@RequestBody MemberSaveRequestDto requestDto, HttpServletRequest request) {
+    @PostMapping("/api/guest/singup")
+    public String Join(@RequestBody MemberSaveRequestDto requestDto) {
         Member member = memberService.SingUp(requestDto);
         if (member == null) {
             return "NO";
@@ -31,8 +32,9 @@ public class MemberApiController {
         }
     }
 
-    //사장님 회원가입
-    @PostMapping("/chairman/singup")
+
+    // 사장님 회원가입
+    @PostMapping("/api/chairman/singup")
     public String Join_User(@RequestBody MemberSaveRequestDto requestDto, HttpServletRequest request) {
         Member member = memberService.SingUp(requestDto);
         if (member == null) {
@@ -47,9 +49,9 @@ public class MemberApiController {
 
     //비밀번호 아이디 체크 후 로그인
     @ResponseBody
-    @RequestMapping("/login") //ajax
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String check_id(@RequestBody HashMap<String, Object> map) {
-        String result = memberService.Check_Login(map.get("name"), map.get("password"));
+        String result = memberService.Check_Login(map.get("email"), map.get("password"));
         return result;
     }
 
@@ -61,13 +63,11 @@ public class MemberApiController {
         session.invalidate();
 //        return"redirect:/";
     }
+
+//   정보 수정
+    @PutMapping("/api/guest/update")
+    public void modify(@PathVariable String email, @RequestBody MemberUpdateRequestDto requestDto) {
+        memberService.InfoUpdate(email, requestDto);
+    }
+
 }
-//    정보 수정
-//    public String modify(int password, String name, HttpServletRequest request) {
-//
-//        HttpSession session = request.getSession();
-
-
-//    }
-
-
