@@ -34,6 +34,9 @@ public class IndexController {
 
 
 
+
+
+
     @GetMapping("/")
     public String index(Model model) {
 
@@ -53,7 +56,7 @@ public class IndexController {
             model.addAttribute("userName", user.getName());
         }
 
-        return "MainContent"; //index.mustache로 자동 변환되어 반환한다.
+        return "App"; //index.mustache로 자동 변환되어 반환한다.
 
     }
 
@@ -212,9 +215,5 @@ public class IndexController {
     public String postsChairman() {
         return "chairman";
     }
-
-    //수량 취소 + 추가
-    @GetMapping("/posts/add")
-    public String BasketAddCancle() { return "order";}
 
 }

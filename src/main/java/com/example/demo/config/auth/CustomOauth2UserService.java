@@ -55,11 +55,11 @@ public class CustomOauth2UserService implements OAuth2UserService<OAuth2UserRequ
 
     }
 
-//세션에저장
 
+    //구글 계정 변경
     private Member saveOrUpdate(OAuthAttributes attributes) { //member 에 저장.
         Member member = memberRepository.findByEmail(attributes.getEmail())
-                .map(entity -> entity.update(attributes.getName(), attributes.getPicture()))
+                .map(entity -> entity.update_google(attributes.getName(), attributes.getPicture()))
                 .orElse(attributes.toEntity());
 
         return memberRepository.save(member);
