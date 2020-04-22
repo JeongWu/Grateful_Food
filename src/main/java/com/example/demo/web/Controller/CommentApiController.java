@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 
         private final CommentService commentService;;
             //아작스통신으로 값을 넘겨줘서 저장.
-            @PostMapping("/guest/comment") //guest 댓글을 저장함
+            @PostMapping("/api/guest/comment") //guest 댓글을 저장함
             public Long save(@RequestBody CommentSaveRequestDto requestDto){
                 return commentService.save(requestDto);
             }
 
-            @PostMapping("/chairman/comment") //사장 댓글을 저장함
+            @PostMapping("/api/chairman/comment") //사장 댓글을 저장함
             public Long saveChairman(@RequestBody CommentSaveRequestDto requestDto){
             return commentService.save(requestDto);
             }

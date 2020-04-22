@@ -21,12 +21,12 @@ public class Member extends BaseTimeEntity {
         @Column(nullable = false)
         private String name;
 
-        @Column(length=20)
+        @Column(nullable = false)
         private String email;
         @Column
         private String picture;
 
-        @Column(nullable=false)
+        @Column
         private int password;
 
         @Embedded
@@ -36,7 +36,7 @@ public class Member extends BaseTimeEntity {
         private Coupon coupon;
 
         @Enumerated(EnumType.STRING)
-        @Column(nullable = false)
+        @Column
         private Role role;
 
         @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
@@ -54,6 +54,13 @@ public class Member extends BaseTimeEntity {
 
 
 
+        }
+
+        public Member update_google(String name, String picture) {
+                this.name = name;
+                this.picture = picture;
+
+                return this;
         }
 
         public Member update(int password) {

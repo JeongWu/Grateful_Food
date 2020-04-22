@@ -58,15 +58,13 @@ public class CommentApiControllerTest {
 
         commentService.save(requestDto); //DB에 저장한다.
 
-        String url = "http://localhost:" + port + "/Guest/comment";
+        String url = "http://localhost:" + port + "/api/guest/comment";
 
         //when
         ResponseEntity<Long> responseEntity = restTemplate.postForEntity(url, requestDto, Long.class);
 
         //then
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-        //본래 get으로 값을 불러올때 1차캐시에서 우선적으로 찾는 것으로 알고있다
-        //하지만 save로 db에 값을 쑤셔넣어야지만 찾을 수 있다. 왜그러지?
         assertThat(responseEntity.getBody()).isGreaterThan(0L);
 
         List<Comments> all = commentRepository.findAll();

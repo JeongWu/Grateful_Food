@@ -18,17 +18,21 @@ public class Food { //builder로 값을 넘겨줘야함.
     @Column(name = "food_id")
     private Long id;
 
-    private String name;
+    protected String name;
 
-    private int price;
+    public int price;
 
     @ManyToOne
     @JoinColumn(name = "store_id")
     private Store store;
 
-    public Food() {
+    public Food(){
 
     }
+   public void NamePrice(String name, int price){
+       this.name = name;
+       this.price = price;
+   }
 
     //    @ManyToOne(fetch = FetchType.LAZY)
 //    @JoinColumn(name = "order_id")
